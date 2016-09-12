@@ -1,0 +1,71 @@
+<h4>
+    Linea de Inicializaci&oacute;n
+</h4>
+<p>
+    Se utiliza generalmente solo en entornos Unix, esta l&iacute;nea permite la ejecuci&oacute;n del script solo por el nombre.
+</p>
+<h4>
+    Documentaci&oacute;n del script
+</h4>
+<p>
+    Aqu&iacute; explicamos la utilidad del script o m&oacute;dulo que desarrollamos, realizaremos una especie de sumario sobre las
+    variables globales y cualquier otra anotaci&oacute;n que consideres relevante. Se puede acceder externamente a esta
+    documentaci&oacute;n simplemente con &nbsp;nombreModulo.__doc__.
+</p>
+<h4>
+    M&oacute;dulos a Importar
+</h4>
+<p>
+    Aqu&iacute; importaremos todos los m&oacute;dulos necesarios para el c&oacute;digo de nuestro script. Los m&oacute;dulos que aqu&iacute; se definan se
+    importan una vez (al cargar el m&oacute;dulo). Existen otros imports, los que se realizan dentro de funciones, estos solo
+    se cargar&aacute;n cuando se llame a dicha funci&oacute;n.
+</p>
+<h4>
+    Declaraci&oacute;n de variables
+</h4>
+<p>
+    Aqu&iacute; declararemos las variables globales que utilizaremos en las&nbsp;m&uacute;ltiples&nbsp;funciones&nbsp;en este m&oacute;dulo.
+</p>
+<p>
+    Te recomendamos como buena pr&aacute;ctica, evitar en lo posible
+    utilizar variables globales en&nbsp;detrimento&nbsp;de variables locales, ya que mejora el rendimiento y utilizaci&oacute;n
+    de memoria entre otras razones.
+</p>
+<h4>
+    Declaraci&oacute;n de Clases
+</h4>
+<p>
+    Todas las clases que crearemos se deben declarar a continuaci&oacute;n. Una clase est&aacute; definida cuando el m&oacute;dulo que la
+    contiene se importa y la sentencia <em>class</em> se ejecuta. &nbsp;De igual forma cualquier documentaci&oacute;n realizada
+    aqu&iacute; para resumir la funcionalidad de la clase se obtiene con nombreClase.__doc__.
+</p>
+<h4>
+    Declaraci&oacute;n de Funciones
+</h4>
+<p>
+    Funciones que se declaren aqu&iacute; ser&aacute;n accesibles externamente cuando se llaman de la forma
+    <em>nombreModulo.nombreFuncion()</em>.
+    Las funci&oacute;n est&aacute; definida cuando el m&oacute;dulo se importa y la sentencia <em>def</em> ejecutada. Al igual que la
+    documentaci&oacute;n de la clase, la documentaci&oacute;n de la funci&oacute;n se accede a&nbsp;trav&eacute;s&nbsp;de la sentencia
+    nombreFuncion.__doc__.
+</p>
+<h4>
+    Cuerpo “main”
+</h4>
+<p>
+    Todo el&nbsp;c&oacute;digo&nbsp;en este nivel se ejecutar&aacute; donde este m&oacute;dulo se importe o arranque como script. La gran
+    mayor&iacute;a de los scripts solo contendran una validaci&oacute;n contra la variable <em>__name__</em>, que de validarse, se
+    redirigir&aacute; al&nbsp;m&eacute;todo&nbsp;o funci&oacute;n determinado (Este m&eacute;todo o funci&oacute;n por lo general suele llamarse main(),
+    para hacer constar que es la funci&oacute;n principal, similar al main de java).<br>
+    Como podemos ejecutar los c&oacute;digos en Python de ambas formas (Cargarlo como m&oacute;dulo o ejecutarlo como script ),
+    necesitamos conocer de que forma o a trav&eacute;s de quien es ejecutado el m&oacute;dulo, por lo que la variable __name__ nos
+    dar&aacute; la soluci&oacute;n.
+</p>
+<ul>
+    <li>
+        __name__ &nbsp;Contendr&aacute; el nombre del m&oacute;dulo si este es importado por otro script.
+    </li>
+    <li>
+        __name__ Contendr&aacute; el valor literal ‘__main__’ cuando el m&oacute;dulo se ejecuta como un script.
+    </li>
+</ul>

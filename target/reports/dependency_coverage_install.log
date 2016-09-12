@@ -1,0 +1,9 @@
+Collecting coverage
+  Downloading coverage-4.2.tar.gz (359kB)
+Building wheels for collected packages: coverage
+  Running setup.py bdist_wheel for coverage: started
+  Running setup.py bdist_wheel for coverage: finished with status 'done'
+  Stored in directory: /home/sebastian/.cache/pip/wheels/6f/54/a5/e7629c41b30061b18f0ccbe4be643ed4cf5329f7b2459cf9ae
+Successfully built coverage
+Installing collected packages: coverage
+Successfully installed coverage-4.2

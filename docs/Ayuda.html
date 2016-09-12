@@ -1,0 +1,717 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Utiles - Importar - Importar datos de otros sistemas - Importar desde un
+archivo Excel</title>
+
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Courier;
+	panose-1:2 7 4 9 2 2 5 2 4 4;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Calisto MT";
+	panose-1:2 4 6 3 5 5 5 3 3 4;}
+@font-face
+	{font-family:"\@MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:9.0pt;
+	font-family:"Verdana",sans-serif;}
+h1
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:72.0pt;
+	text-indent:-21.6pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	font-style:italic;}
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:79.2pt;
+	text-indent:-7.2pt;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:35.4pt;
+	margin-bottom:.0001pt;
+	font-size:9.0pt;
+	font-family:"Verdana",sans-serif;}
+a:link, span.MsoHyperlink
+	{font-family:"Verdana",sans-serif;
+	color:blue;
+	font-weight:bold;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{font-family:"Verdana",sans-serif;
+	color:blue;
+	font-weight:bold;
+	text-decoration:underline;}
+p.Ayuda, li.Ayuda, div.Ayuda
+	{mso-style-name:Ayuda;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:9.0pt;
+	font-family:"Verdana",sans-serif;}
+p.Ayudaencabezado, li.Ayudaencabezado, div.Ayudaencabezado
+	{mso-style-name:"Ayuda encabezado";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:22.0pt;
+	margin-left:0cm;
+	font-size:10.0pt;
+	font-family:"Verdana",sans-serif;
+	color:navy;
+	font-weight:bold;}
+p.Ayudatem, li.Ayudatem, div.Ayudatem
+	{mso-style-name:"Ayuda ítem";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:11.0pt;
+	margin-left:28.4pt;
+	text-indent:-14.2pt;
+	font-size:9.0pt;
+	font-family:"Verdana",sans-serif;}
+p.Ayudapie, li.Ayudapie, div.Ayudapie
+	{mso-style-name:"Ayuda pie";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Verdana",sans-serif;
+	color:navy;
+	font-weight:bold;}
+p.Ayudasangra, li.Ayudasangra, div.Ayudasangra
+	{mso-style-name:"Ayuda sangría";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:11.0pt;
+	margin-left:0cm;
+	text-indent:14.2pt;
+	font-size:9.0pt;
+	font-family:"Verdana",sans-serif;}
+p.Ayudatilde, li.Ayudatilde, div.Ayudatilde
+	{mso-style-name:"Ayuda tilde";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:11.0pt;
+	margin-left:14.2pt;
+	text-indent:-14.2pt;
+	font-size:9.0pt;
+	font-family:"Verdana",sans-serif;}
+p.Ayudavieta1, li.Ayudavieta1, div.Ayudavieta1
+	{mso-style-name:"Ayuda viñeta 1";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:11.0pt;
+	margin-left:1.0cm;
+	text-indent:-14.15pt;
+	font-size:9.0pt;
+	font-family:"Verdana",sans-serif;}
+p.Ayudavieta2, li.Ayudavieta2, div.Ayudavieta2
+	{mso-style-name:"Ayuda viñeta 2";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:11.0pt;
+	margin-left:42.55pt;
+	text-indent:-14.2pt;
+	font-size:9.0pt;
+	font-family:"Verdana",sans-serif;}
+p.Ayudavieta3, li.Ayudavieta3, div.Ayudavieta3
+	{mso-style-name:"Ayuda viñeta 3";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:11.0pt;
+	margin-left:2.0cm;
+	text-indent:-14.15pt;
+	font-size:9.0pt;
+	font-family:"Verdana",sans-serif;}
+p.Ayudavieta4, li.Ayudavieta4, div.Ayudavieta4
+	{mso-style-name:"Ayuda viñeta 4";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:11.0pt;
+	margin-left:70.9pt;
+	text-indent:-14.2pt;
+	font-size:9.0pt;
+	font-family:"Verdana",sans-serif;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:42.55pt 42.55pt 42.55pt 70.9pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body bgcolor="#FFFFDF" lang=ES-AR link=blue vlink=blue>
+
+<div class=WordSection1>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=113 valign=top style='width:85.0pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=Ayudaencabezado><map name=MicrosoftOfficeMap0><area shape=Rect
+  coords="3, 3, 14, 18" href="__-Indice.htm" title=Indice></map><img border=0
+  width=19 height=23
+  src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image001.gif"
+  align=left hspace=12 usemap="#MicrosoftOfficeMap0" alt="Cuadro de texto: i"><a
+  name="_top"></a></p>
+  </td>
+  <td width=595 valign=top style='width:446.6pt;padding:0cm 3.5pt 0cm 3.5pt'>
+  <p class=Ayudaencabezado style='margin-bottom:0cm;margin-bottom:.0001pt'><span
+  lang=ES>Útiles<br>
+  </span><span lang=ES style='font-size:9.0pt'>     </span><span lang=ES>Importar
+  Datos de Otros Sistemas</span></p>
+  <p class=Ayudaencabezado style='margin-left:53.25pt'><span lang=ES>Importar
+  desde archivo Excel </span>(Modelo proporcionado por <span lang=ES
+  style='color:#333399'>HOLISTOR<sup>®</sup></span>)<span lang=ES>                 
+  </span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.7pt;margin-bottom:.0001pt;text-indent:-17.85pt'><span
+style='font-family:Wingdings'>ü<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span>A través de esta opción, <b><span style='color:#333399'>HOLISTOR<sup>®</sup></span></b>
+pone a disposición de los usuarios dos archivos Excel modelo para importar
+comprobantes en <i>IVA Registración</i>, uno para Compras y otro para Ventas.</p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.7pt;margin-bottom:.0001pt;text-indent:-17.85pt'><span
+style='font-family:Wingdings'>ü<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span>Para obtener los modelos de Compras y Ventas hacer <u><span
+style='color:#0070C0'><a
+href="http://www.holistor.com.ar/holistor/joomla/index.php?option=com_content&amp;view=article&amp;id=1234"><b>click
+aquí</b></a></span></u>. (También se podrán descargar los archivos logueándose
+en la página de Holistor dentro de Faqs de Uso). </p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.7pt;margin-bottom:.0001pt;text-indent:-17.85pt'><span
+style='font-family:Wingdings'>ü<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span>El usuario podrá enviar dichos archivos a sus clientes, para que
+ellos ingresen allí los comprobantes de compras y de ventas del período, y una
+vez completos, poder importarlos al módulo <i>IVA Registración</i>, siguiendo
+los pasos que se indican a continuación.</p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;
+margin-left:17.85pt;margin-bottom:.0001pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt'><a href="#Pasos_previos"><b>Paso
+previo a la importación</b></a></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt'><a href="#Importación_Compras"><b>Importación
+de un archivo de compras</b></a></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;
+margin-left:35.45pt;margin-bottom:.0001pt'><a href="#Importación_Ventas"><b>Importación
+de un archivo de ventas</b></a></p>
+
+<p class=MsoNormal style='margin-top:18.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:2.0cm;margin-bottom:.0001pt;text-indent:-21.25pt'><a
+name="Pasos_previos"></a><span lang=ES-TRAD style='font-family:Wingdings'>Ø<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><u><span
+lang=ES-TRAD>Paso previo a la importación</span></u></b></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:2.0cm;margin-bottom:.0001pt'><span lang=ES-TRAD>Una vez que se
+cuenta con el archivo completo, posicionado en la pestaña <i>Comprobantes
+Compras</i> (o <i>Comprobantes Ventas</i>, según corresponda), se lo deberá
+guardar con extensión “<b>.prn</b>” (texto con formato delimitado por
+espacios), por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:0cm;
+margin-left:2.0cm;margin-bottom:.0001pt'><span lang=ES-TRAD><img border=0
+width=542 height=138
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image002.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt'><span lang=ES-TRAD>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:18.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:2.0cm;margin-bottom:.0001pt;text-indent:-21.25pt'><a
+name="Importación_Compras"></a><span lang=ES-TRAD style='font-family:Wingdings'>Ø<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><u><span
+lang=ES-TRAD>Importación de un archivo de Compras</span></u></b></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Dentro del módulo <b>IVA Registración</b>,
+seleccionar los datos de trabajo de la empresa a la cual se importarán los
+comprobantes.</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Ingresar al menú <b><i>Útiles</i></b></span><b><i><span
+style='font-family:Wingdings'>è</span></i></b><b><i><span lang=ES-TRAD>Importar</span></i></b><b><i><span
+lang=ES-TRAD> </span></i></b><b><i><span lang=ES-TRAD>Datos de otros sistemas</span></i></b><span
+lang=ES-TRAD> y marcar la
+  opción <span lang=ES-AR style='font-family:Wingdings'>¤</span><span
+  lang=ES-AR> </span>Compras. Ingresar al botón [IVA Compras] y seleccionar el
+archivo a importar. Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt'><span lang=ES-TRAD><img
+border=0 width=475 height=167
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image003.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Luego, ingresar al botón [Elegir o Crear
+diseño de registro]. Seleccionar el esquema <b>Excel Cpras MH</b> (que tiene
+asociado el archivo HWCpra1.prn)</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt'><img border=0 width=370
+height=105 id="Imagen 1"
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image004.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:78.0pt;margin-bottom:.0001pt'><b><span lang=ES-TRAD>Atención</span></b><span
+lang=ES-TRAD>: si este esquema no existe en el sistema, se lo deberá crear y
+completar el diseño (este proceso se realiza por única vez). El número del
+esquema puede ser cualquiera (se sugiere respetar la descripción). Dentro del
+Recuadro “Esquema”, botón [IVA] se deberán completar los campos tal como se
+indica a continuación:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:78.0pt;margin-bottom:.0001pt'><span lang=ES><img border=0
+width=180 height=90
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image005.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:78.0pt;margin-bottom:.0001pt'><img border=0 width=302
+height=561
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image006.jpg"></p>
+
+<p class=MsoNormal style='margin-left:78.0pt'><img border=0 width=300
+height=612
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image007.jpg"></p>
+
+<p class=MsoNormal style='margin-left:78.0pt'><span lang=ES-TRAD>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:99.4pt'><span lang=ES-TRAD>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Una vez seleccionado el esquema, se
+deberán completar los datos solicitados en los botones del recuadro <i>Codificación
+de</i> (estos quedarán guardados para futuras importaciones):</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+lang=ES-TRAD style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-TRAD>[<u>Comprobantes</u>]: A la izquierda se
+muestran los comprobantes definidos dentro del módulo IVA Registración. En la
+ columna <i>Su Codificación</i> se deben informar los códigos utilizados en el
+archivo importado para los distintos comprobantes. A modo de ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><img border=0 width=283
+height=105
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image008.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+lang=ES-TRAD style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-TRAD>[<u>Condiciones Fiscales</u>]: A la izquierda
+se muestran los códigos de condiciones fiscales definidas en IVA Registración
+y, en la columna <i>Su Codificación</i>, se deberán colocar los códigos de las
+condiciones fiscales usados en el archivo a importar. Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><img border=0 width=317
+height=194
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image009.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+lang=ES-TRAD style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-TRAD>[<u>Conceptos No Gravados</u>]: A la izquierda
+se muestran los códigos de conceptos no gravados definidos en la vía
+seleccionada y, en la columna <i>Su</i><i> codificación</i>, se deberán colocar
+los códigos utilizados en el archivo a importar (esta asociación deberá
+realizarse en cada vía donde se importe el archivo, la primera vez. Luego
+quedará guardada). Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><img border=0 width=315
+height=122
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image010.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+lang=ES-TRAD style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-TRAD>[<u>Tipos de Movimiento</u>]: A la izquierda
+se muestran los códigos de tipos de movimientos definidos en la vía
+seleccionada y, en la columna <i>Su</i><i> codificación</i>, se deberán colocar
+los códigos utilizados en el archivo a importar (esta asociación deberá
+realizarse en cada vía donde se importe el archivo, la primera vez. Luego
+quedará guardada). Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><img border=0 width=341
+height=122
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image011.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><span lang=ES-TRAD>Cuando el
+Proveedor del comprobante a importar esté clasificado en Iva Registración como
+Monotributista, si el tipo de movimiento tiene clasificación Siap “Locaciones”
+o “Prestaciones de Servicios”, </span>automaticamente se clasificará ese
+comprobante con la letra “S”, en el campo “¿Compra/Servicios? (C/S)”, de lo
+contrario llevará C.</p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+lang=ES-TRAD style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-TRAD>[<u>Ret./Perc./P.Cta.</u>]: A la izquierda se
+muestran los códigos de retenciones, percepciones y pagos a cuenta existentes
+en IVA Registración y, en la columna <i>Su</i><i> codificación</i>, se deberán
+colocar los utilizados en el archivo a importar. Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><img border=0 width=341
+height=122
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image012.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+lang=ES-TRAD style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-TRAD>[<u>Provincias Ret/Per/P.Cta</u>]: A la
+izquierda se muestran los Códigos y Provincias que están en Archivo / Datos
+Generales / Provincias, y en la columna <i>Su</i><i> codificación</i>, se
+deberán colocar el código que identifica la provincia de la retención/percepción
+en el archivo. Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><img border=0 width=341
+height=122
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image013.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt'><b><span lang=ES-TRAD>Sugerencia</span></b><span
+lang=ES-TRAD>: El usuario puede crear una lista de los códigos que quiere que
+sus clientes utilicen al completar el archivo de Excel, para que todos utilicen
+los mismos y estas asociaciones sirvan para todas las importaciones. </span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Por último, completar los campos de
+[Códigos Auxiliares por defecto], donde se le va a indicar al sistema que, en
+caso de no tener una codificación determinada en los botones anteriores, debe
+llevar la información a los códigos ingresados en estos campos; para
+completarlos sugerimos ubicarse en cada uno de ellos, y efectuar la consulta
+presionando la tecla &lt;F4&gt;. Posicionarse sobre la opción deseada y
+presionar la tecla &lt;Esc&gt; para capturar. Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt'><span lang=ES><img border=0
+width=400 height=138
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image014.jpg"></span><span
+lang=ES> </span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Presionar el botón [Salir] para volver a
+la pantalla inicial. </span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Hacer clic en [Importar] para transferir
+los datos del archivo.</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>8.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Una vez terminado el proceso, ingresar al
+módulo <b>Plataforma</b>, menú <b><i>Útiles</i></b></span><b><i><span
+style='font-family:Wingdings'>è</span></i></b><b><i><span lang=ES-TRAD>Útiles
+de Archivo</span></i></b><span lang=ES-TRAD> y regenerar índices de la vía en
+la cual se ha realizado la importación.</span></p>
+
+<p class=MsoNormal style='margin-left:35.7pt;text-indent:-17.85pt'><span
+lang=ES-TRAD>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:18.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:2.0cm;margin-bottom:.0001pt;text-indent:-21.25pt'><a
+name="Importación_Ventas"><span lang=ES-TRAD style='font-family:Wingdings'>Ø<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><u><span
+lang=ES-TRAD>I</span></u></b></a><b><u><span lang=ES-TRAD>mportación de un
+archivo de Ventas</span></u></b></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Dentro del módulo <b>IVA Registración</b>,
+seleccionar los datos de trabajo de la empresa a la cual se importarán los
+comprobantes.</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Ingresar al menú <b><i>Útiles</i></b></span><b><i><span
+style='font-family:Wingdings'>è</span></i></b><b><i><span lang=ES-TRAD>Importar
+Datos de otros sistemas</span></i></b><span lang=ES-TRAD> y marcar la
+ opción <span lang=ES-AR style='font-family:Wingdings'>¤</span><span
+ lang=ES-AR> </span>Ventas. Ingresar al botón [IVA Ventas] y seleccionar el
+archivo a importar. Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt'><img border=0 width=474
+height=169
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image015.jpg"><span
+style='color:red'> </span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Luego, ingresar al botón [Elegir o Crear
+diseño de registro]. Seleccionar el esquema <b>Excel Vtas MH</b> (que tiene
+asociado el archivo HWVenta.prn)</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt'><img border=0 width=374
+height=120
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image016.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:99.4pt;margin-bottom:.0001pt'><b><span lang=ES-TRAD>Atención</span></b><span
+lang=ES-TRAD>: si este esquema no existe en el sistema, se lo deberá crear, y
+completar el diseño (este proceso se realiza por única vez). El número del
+esquema puede ser cualquiera (se sugiere respetar la descripción). Dentro del
+Recuadro “Esquema”, botón [IVA] se deberán completar los campos tal como se
+indica a continuación:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:99.4pt;margin-bottom:.0001pt'><span lang=ES-TRAD><img border=0
+width=186 height=93
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image017.jpg"><span
+style='color:red'> </span></span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:99.4pt;margin-bottom:.0001pt'><img border=0 width=301
+height=578
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image018.jpg"></p>
+
+<p class=MsoNormal style='margin-left:99.4pt'><img border=0 width=301
+height=597
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image019.jpg"></p>
+
+<p class=MsoNormal style='margin-left:99.4pt'><span lang=ES-TRAD>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Una vez seleccionado el esquema, se
+deberán completar los datos solicitados en los botones del recuadro <i>Codificación
+de</i> (estos quedarán guardados para futuras importaciones):</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+lang=ES-TRAD style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-TRAD>[<u>Comprobantes</u>]: A la izquierda se
+muestran los comprobantes definidos dentro del módulo IVA Registración. En la
+ columna <i>Su Codificación</i> se deben informar los códigos utilizados en el
+archivo importado para los distintos comprobantes. A modo de ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><img border=0 width=282
+height=104
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image020.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+lang=ES-TRAD style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-TRAD>[<u>Condiciones Fiscales</u>]: A la izquierda
+se muestran los códigos de condiciones fiscales definidas en IVA Registración
+y, en la columna <i>Su Codificación</i>, se deberán colocar los códigos de las
+condiciones fiscales usados en el archivo a importar. Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><img border=0 width=315
+height=195
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image021.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+lang=ES-TRAD style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-TRAD>[<u>Conceptos No Gravados</u>]: A la izquierda
+se muestran los códigos de conceptos no gravados definidos en la vía
+seleccionada y, en la columna <i>Su</i><i> codificación</i>, se deberán colocar
+los códigos utilizados en el archivo a importar (esta asociación deberá
+realizarse en cada vía donde se importe el archivo, la primera vez. Luego
+quedará guardada). Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><img border=0 width=315
+height=123
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image022.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+lang=ES-TRAD style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-TRAD>[<u>Tipos de Movimiento</u>]: A la izquierda
+se muestran los códigos de tipos de movimientos definidos en la vía
+seleccionada y, en la columna <i>Su</i><i> codificación</i>, se deberán colocar
+los códigos utilizados en el archivo a importar (esta asociación deberá
+realizarse en cada vía donde se importe el archivo, la primera vez. Luego
+quedará guardada). Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><img border=0 width=340
+height=195
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image023.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+lang=ES-TRAD style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-TRAD>[<u>Ret./Perc./P.Cta.</u>]: A la izquierda se
+muestran los códigos de retenciones, percepciones y pagos a cuenta existentes
+en IVA Registración y, en la columna <i>Su</i><i> codificación</i>, se deberán
+colocar los utilizados en el archivo a importar. Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><img border=0 width=341
+height=122
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image012.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt;text-indent:-14.15pt'><span
+lang=ES-TRAD style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-TRAD>[<u>Provincias Ret/Per/P.Cta</u>]: A la
+izquierda se muestran los Códigos y Provincias que están en Archivo / Datos
+Generales / Provincias, y en la columna <i>Su</i><i> codificación</i>, se
+deberán colocar el código que identifica la provincia de la
+retención/percepción en el archivo.</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:92.15pt;margin-bottom:.0001pt'><img border=0 width=341
+height=122
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image013.jpg"></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt'><b><span lang=ES-TRAD>Sugerencia</span></b><span
+lang=ES-TRAD>: El usuario puede crear una lista de los códigos que quiere que
+sus clientes utilicen al completar el archivo de Excel, para que todos utilicen
+los mismos y estas asociaciones sirvan para todas las importaciones, con
+independencia del cliente al cual se solicita completar el archivo. </span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Por último, completar los campos de
+[Códigos Auxiliares por defecto], donde se le va a indicar al sistema que, en
+caso de no tener una codificación determinada en los botones anteriores, debe
+llevar la información a los códigos ingresados en estos campos; para
+completarlos sugerimos ubicarse en cada uno de ellos, y efectuar la consulta
+presionando la tecla &lt;F4&gt;. Posicionarse sobre la opción deseada y
+presionar la tecla &lt;Esc&gt; para capturar. Por ejemplo:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt'><span lang=ES-TRAD><img
+border=0 width=401 height=137
+src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image024.jpg"><span
+style='color:red'> </span></span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Presionar el botón [Salir] para volver a
+la pantalla inicial. </span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Hacer clic en [Importar] para transferir
+los datos del archivo.</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:77.95pt;margin-bottom:.0001pt;text-indent:-21.25pt'><b><span
+lang=ES-TRAD>8.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=ES-TRAD>Una vez terminado el proceso, ingresar al
+módulo <b>Plataforma</b>, menú <b><i>Útiles</i></b></span><b><i><span
+style='font-family:Wingdings'>è</span></i></b><b><i><span lang=ES-TRAD>Útiles
+de Archivo</span></i></b><span lang=ES-TRAD> y regenerar índices de la vía en
+la cual se ha realizado la importación.</span></p>
+
+<p class=MsoNormal style='margin-left:35.7pt;text-indent:-17.85pt'><span
+lang=ES-TRAD>&nbsp;</span></p>
+
+<p class=Ayuda><span lang=ES>&nbsp;</span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse'>
+ <tr>
+  <td width=113 valign=top style='width:3.0cm;padding:0cm 0cm 0cm 0cm'>
+  <p class=Ayudapie><map name=MicrosoftOfficeMap1><area shape=Rect
+  coords="3, 4, 14, 19" href="__-Indice.htm" title=Indice></map><img border=0
+  width=19 height=23
+  src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image025.gif"
+  align=left hspace=12 usemap="#MicrosoftOfficeMap1" alt="Cuadro de texto: i"></p>
+  </td>
+  <td width=529 valign=top style='width:14.0cm;padding:0cm 0cm 0cm 0cm'>
+  <p class=Ayudapie><map name=MicrosoftOfficeMap2><area shape=Rect
+  coords="3, 4, 15, 19" href="#_top" title="Inicio de la página"></map><img
+  border=0 width=19 height=23
+  src="06-Importar_datos_arch_excel_modelo_holistor_archivos/image026.gif"
+  align=left hspace=12 usemap="#MicrosoftOfficeMap2" alt="Cuadro de texto: á"></p>
+  </td>
+ </tr>
+</table>
+
+<p class=Ayuda><span lang=ES>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

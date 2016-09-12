@@ -1,0 +1,6 @@
+Collecting unittest-xml-reporting
+  Downloading unittest_xml_reporting-2.1.0-py2.py3-none-any.whl
+Collecting six>=1.4.0 (from unittest-xml-reporting)
+  Downloading six-1.10.0-py2.py3-none-any.whl
+Installing collected packages: six, unittest-xml-reporting
+Successfully installed six-1.10.0 unittest-xml-reporting-2.1.0
