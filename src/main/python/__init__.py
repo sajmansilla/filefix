@@ -14,8 +14,57 @@ provincias = {'C':0, 'B':1, 'K':2, 'X':3, 'W':4, 'E':5, 'Y':6, 'M':7, 'F':8, 'A'
 
 
 # Declaracion de Clases
-# class Ejemplo(Object):
-#    """ clase Ejemplo """
+
+
+class Linea:
+    """
+        Clase Linea
+        Esta clase incluye todos los campos que necesita una línea del pnr de Holistor.
+    """
+
+    nombre_comprobante = '    '
+    tipo_comprobante = ''
+    punto_venta = '0000'
+    nro_comprobante = '00000000'
+    fecha = ''
+    codigo_neto_gravado = ''
+    neto_gravado = 0
+    cod_concepto_no_gravado = ''
+    conceptos_no_gravados = 0
+    cod_operacion_exenta = ''
+    operaciones_exentas = 0
+    codigo_perc_ret_pc = ''
+    percepciones = 0
+    provincia_ret_perc = ''
+    tasa_iva = 0
+    iva_liquidado = 0
+    debito_fiscal = 0
+    total = 0
+    condicion_fiscal_cliente = ''
+    cuit_cliente = ''
+    nombre_cliente = ''
+    domicilio_cliente = ''
+    codigo_postal = ''
+    provincia = ''
+    tipo_doc_cliente = ''
+    moneda = 0
+    tipo_cambio = 0
+    cai_cae = ''
+
+    def __str__(self):
+        cadena = self.nombre_comprobante + ', ' + self.tipo_comprobante + ', ' + self.punto_venta + ', '\
+                 + self.nro_comprobante + ', ' + self.fecha + ', ' + self.codigo_neto_gravado + ', '\
+                 + str(self.neto_gravado) + ', ' + self.cod_concepto_no_gravado + ', '\
+                 + str(self.conceptos_no_gravados) + ', ' + self.cod_operacion_exenta + ', '\
+                 + str(self.operaciones_exentas) + ', ' + self.codigo_perc_ret_pc + ', '\
+                 + str(self.percepciones) + ', ' + self.provincia_ret_perc + ', ' + str(self.tasa_iva) + ', '\
+                 + str(self.iva_liquidado) + ', ' + str(self.debito_fiscal) + ', ' + str(self.total) + ', '\
+                 + self.condicion_fiscal_cliente + ', ' + str(self.cuit_cliente) + ', ' + self.nombre_cliente + ', '\
+                 + self.domicilio_cliente + ', ' + str(self.codigo_postal) + ', ' + self.provincia + ', '\
+                 + self.tipo_doc_cliente + ', ' + str(self.moneda) + ', ' + str(self.tipo_cambio) + ', '\
+                 + str(self.cai_cae)
+        return cadena
+
 
 # Declaracion de Funciones
 
@@ -49,23 +98,23 @@ def obtener_provincia(linea):
 
 
 def preparar_archivo():
-    infile = codecs.open('/home/sebastian/Downloads/DANI0716.tsv', 'r', 'latin-1')
-    outfile = codecs.open('./temp.prn', 'w', 'utf-8')
+    infile = codecs.open('/home/sa.mansilla/PycharmProjects/filefix/DANI0716.tsv', 'r', 'latin-1')
+    outfile = codecs.open('/home/sa.mansilla/PycharmProjects/filefix/temp.prn', 'w', 'utf-8')
 
     outfile.write(infile.read())
 
     outfile.close()
     infile.close()
 
-    infile = open('./temp.prn', 'r')
+    infile = open('/home/sa.mansilla/PycharmProjects/filefix/temp.prn', 'r')
     return infile
 
 
 def obtener_cuit(linea):
-    if linea[len(linea) - 4].find(',') == -1 and len(linea[len(linea) - 4]) > 1:
+    if linea[len(linea) - 4].find(',') == -1 and len(linea[len(linea) - 4]) >= 11:
         cuit = linea[len(linea) - 4].replace('-', '')
         cuit = cuit.replace('.', '')
-    elif linea[len(linea) - 5].find(',') == -1 and len(linea[len(linea) - 5]) > 1:
+    elif linea[len(linea) - 5].find(',') == -1 and len(linea[len(linea) - 5]) >= 11:
         cuit = linea[len(linea) - 5].replace('-', '')
         cuit = cuit.replace('.', '')
     else:
@@ -128,12 +177,12 @@ def obtener_punto_venta(linea):
     return pto_vta
 
 
-def obtener_letra_comprobante(linea):
+def obtener_tipo_comprobante(linea):
     letra_comprobante = linea[2]
     return letra_comprobante
 
 
-def obtener_tipo_comprobante(linea):
+def obtener_nombre_comprobante(linea):
     tipo_comprobante = linea[1]
     return tipo_comprobante
 
@@ -141,6 +190,16 @@ def obtener_tipo_comprobante(linea):
 def obtener_fecha(linea):
     fecha = linea[0]
     return fecha
+
+
+def calcular_condicion_fiscal(linea):
+    condic_fiscal = 'RI'
+    return condic_fiscal
+
+
+def calcular_tipo_doc_cliente(linea):
+    tipo_doc_cliente = '99'
+    return tipo_doc_cliente
 
 
 def main():
@@ -165,21 +224,59 @@ def main():
 
             nro_comprobante = obtener_nro_comprobante(linea_split) #linea[4]
             punto_venta = obtener_punto_venta(linea_split) #linea[3]
-            letra_comprobante = obtener_letra_comprobante(linea_split) #linea[2]
-            tipo_comprobante = obtener_tipo_comprobante(linea_split) #linea[1]
+            tipo_comprobante = obtener_tipo_comprobante(linea_split) #linea[2]
+            nombre_comprobante = obtener_nombre_comprobante(linea_split) #linea[1]
             fecha = obtener_fecha(linea_split) #linea[0]
 
             if 1: #(len(cuit) < 11 or len(cuit) > 13) and len(cuit) > 0 :
                 #print(linea_split)
                 i = i + 1
-                print(str(fecha) + ' | ' + str(tipo_comprobante) + ' | ' + str(letra_comprobante) + ' | '
+                print(str(fecha) + ' | ' + str(nombre_comprobante) + ' | ' + str(tipo_comprobante) + ' | '
                       + str(punto_venta) + ' | ' + str(nro_comprobante) + ' | ' + str(razon_social) + ' | '
                       + str(provincia) + ' | ' + str(cuit) + ' | ' + str(no_gravado) + ' | ' + str(gravado) + ' | '
                       + str(iva_linea) + ' | ' + str(total_linea))
+
+            outline = Linea()
+            outline.nombre_comprobante = nombre_comprobante
+            outline.tipo_comprobante = tipo_comprobante
+            outline.punto_venta = punto_venta
+            outline.nro_comprobante = nro_comprobante
+            outline.fecha = fecha
+            outline.codigo_neto_gravado = 'VTA'
+            outline.neto_gravado = gravado
+            outline.cod_concepto_no_gravado = 'NG'
+            outline.conceptos_no_gravados = no_gravado
+            outline.cod_operacion_exenta = 'EXV'
+            outline.operaciones_exentas = 0
+            outline.codigo_perc_ret_pc = 'P01'
+            outline.percepciones = 0
+            outline.provincia_ret_perc = provincia
+            outline.tasa_iva = 21
+            outline.iva_liquidado = iva_linea
+            outline.debito_fiscal = iva_linea
+            # cuando meto este control, sacar la linea de asignación de abajo
+            # if total_linea == sum(conceptos):
+            #     total = total_linea
+            # else
+            #     print("Excepcion: El total no es igual a la suma de los conceptos.")
+            #     total = total_linea
+            outline.total = total_linea
+            outline.condicion_fiscal_cliente = calcular_condicion_fiscal(line)
+            outline.cuit_cliente = cuit
+            outline.nombre_cliente = razon_social
+            outline.domicilio_cliente = ''
+            outline.codigo_postal = 0
+            outline.provincia = provincia
+            outline.tipo_doc_cliente = calcular_tipo_doc_cliente(line)
+            outline.moneda = ''
+            outline.tipo_cambio = 0
+            outline.cai_cae = ''
+
+            print(outline)
 
     entrada.close()
 
 # Cuerpo Principal
 if __name__ == '__main__':
     main()
-    os.remove('./temp.prn')
+    os.remove('/home/sa.mansilla/PycharmProjects/filefix/temp.prn')
