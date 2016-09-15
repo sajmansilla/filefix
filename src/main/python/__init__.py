@@ -7,7 +7,7 @@
 # Modulos que se importan
 import os
 import codecs
-from clases import *
+from clases import Linea
 
 # Declaracion de variables Globales
 provincias = {'C': 0, 'B': 1, 'K': 2, 'X': 3, 'W': 4, 'E': 5, 'Y': 6, 'M': 7, 'F': 8, 'A': 9, 'J': 10, 'D': 11, 'S': 12,

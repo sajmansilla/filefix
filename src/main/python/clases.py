@@ -10,6 +10,8 @@ class Linea:
         Esta clase incluye todos los campos que necesita una línea del pnr de Holistor.
     """
 
+    # TODO: Arreglar los setters para que cada uno tenga el tamaño definido por la AFIP.
+
     def __init__(self):
         self.nombre_comprobante = None
         self.tipo_comprobante = None
