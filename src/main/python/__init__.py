@@ -7,63 +7,11 @@
 # Modulos que se importan
 import os
 import codecs
+from clases import *
 
 # Declaracion de variables Globales
-provincias = {'C':0, 'B':1, 'K':2, 'X':3, 'W':4, 'E':5, 'Y':6, 'M':7, 'F':8, 'A':9, 'J':10, 'D':11, 'S':12, 'G':13,
-              'T':14, 'H':16, 'U':17, 'P':18, 'N':19, 'Q':20, 'L':21, 'R':22, 'Z':23, 'V':24}
-
-
-# Declaracion de Clases
-
-
-class Linea:
-    """
-        Clase Linea
-        Esta clase incluye todos los campos que necesita una línea del pnr de Holistor.
-    """
-
-    nombre_comprobante = '    '
-    tipo_comprobante = ''
-    punto_venta = '0000'
-    nro_comprobante = '00000000'
-    fecha = ''
-    codigo_neto_gravado = ''
-    neto_gravado = 0
-    cod_concepto_no_gravado = ''
-    conceptos_no_gravados = 0
-    cod_operacion_exenta = ''
-    operaciones_exentas = 0
-    codigo_perc_ret_pc = ''
-    percepciones = 0
-    provincia_ret_perc = ''
-    tasa_iva = 0
-    iva_liquidado = 0
-    debito_fiscal = 0
-    total = 0
-    condicion_fiscal_cliente = ''
-    cuit_cliente = ''
-    nombre_cliente = ''
-    domicilio_cliente = ''
-    codigo_postal = ''
-    provincia = ''
-    tipo_doc_cliente = ''
-    moneda = 0
-    tipo_cambio = 0
-    cai_cae = ''
-
-    def __str__(self):
-        cadena = self.nombre_comprobante + ', ' + self.tipo_comprobante + ', ' + self.punto_venta + ', '\
-                 + self.nro_comprobante + ', ' + self.fecha + ', ' + self.codigo_neto_gravado + ', '\
-                 + str(self.neto_gravado) + ', ' + self.cod_concepto_no_gravado + ', '\
-                 + str(self.conceptos_no_gravados) + ', ' + self.cod_operacion_exenta + ', '\
-                 + str(self.operaciones_exentas) + ', ' + self.codigo_perc_ret_pc + ', '\
-                 + str(self.percepciones) + ', ' + self.provincia_ret_perc + ', ' + str(self.tasa_iva) + ', '\
-                 + str(self.iva_liquidado) + ', ' + str(self.debito_fiscal) + ', ' + str(self.total) + ', '\
-                 + self.condicion_fiscal_cliente + ', ' + str(self.cuit_cliente) + ', ' + self.nombre_cliente + ', '\
-                 + self.domicilio_cliente + ', ' + str(self.codigo_postal) + ', ' + self.provincia + ', '\
-                 + self.tipo_doc_cliente + ', ' + str(self.moneda) + ', ' + str(self.tipo_cambio) + ', '\
-                 + str(self.cai_cae)
-        return cadena
+provincias = {'C': 0, 'B': 1, 'K': 2, 'X': 3, 'W': 4, 'E': 5, 'Y': 6, 'M': 7, 'F': 8, 'A': 9, 'J': 10, 'D': 11, 'S': 12,
+              'G': 13, 'T': 14, 'H': 16, 'U': 17, 'P': 18, 'N': 19, 'Q': 20, 'L': 21, 'R': 22, 'Z': 23, 'V': 24}
 
 
 # Declaracion de Funciones
@@ -83,7 +31,6 @@ def obtener_razon_social(linea):
     return razon_social
 
 
-
 def obtener_provincia(linea):
     if len(linea[len(linea) - 5]) == 1:
         provincia = linea[len(linea) - 5]
@@ -97,16 +44,16 @@ def obtener_provincia(linea):
     return provincia
 
 
-def preparar_archivo():
-    infile = codecs.open('/home/sa.mansilla/PycharmProjects/filefix/DANI0716.tsv', 'r', 'latin-1')
-    outfile = codecs.open('/home/sa.mansilla/PycharmProjects/filefix/temp.prn', 'w', 'utf-8')
+def preparar_archivo(path_entrada, path_salida):
+    infile = codecs.open(path_entrada, 'r', 'latin-1')
+    outfile = codecs.open(path_salida, 'w', 'utf-8')
 
     outfile.write(infile.read())
 
     outfile.close()
     infile.close()
 
-    infile = open('/home/sa.mansilla/PycharmProjects/filefix/temp.prn', 'r')
+    infile = open(path_salida, 'r')
     return infile
 
 
@@ -124,8 +71,8 @@ def obtener_cuit(linea):
 
 def obtener_no_gravado(linea):
     no_gravado = linea[len(linea) - 4]
-    no_gravado = no_gravado.replace('.','')
-    no_gravado = no_gravado.replace(',','')
+    no_gravado = no_gravado.replace('.', '')
+    no_gravado = no_gravado.replace(',', '')
     try:
         no_gravado = float(no_gravado)
     except:
@@ -138,7 +85,7 @@ def obtener_gravado(linea):
     gravado = linea[len(linea) - 3]
     gravado = gravado.replace('.','')
     gravado = gravado.replace(',','')
-    #gravado = float(gravado)/100
+    # gravado = float(gravado)/100
     return gravado
 
 
@@ -146,7 +93,7 @@ def obtener_iva(linea):
     iva = linea[len(linea) - 2]
     iva = iva.replace('.','')
     iva = iva.replace(',','')
-    #iva = float(iva)/100
+    # iva = float(iva)/100
     return iva
 
 
@@ -154,7 +101,7 @@ def obtener_total(linea):
     total = linea[len(linea) - 1]
     total = total.replace('.','')
     total = total.replace(',','')
-    #total = float(total)/100
+    # total = float(total)/100
     return total
 
 
@@ -204,8 +151,10 @@ def calcular_tipo_doc_cliente(linea):
 
 def main():
     """Main"""
+    path_entrada = '/home/sebastian/PycharmProjects/filefix/DANI0716.tsv'
+    path_salida = '/home/sebastian/PycharmProjects/filefix/temp.prn'
 
-    entrada = preparar_archivo()
+    entrada = preparar_archivo(path_entrada, path_salida)
     i = 0
     for line in entrada:
         if line[0].isdigit() and line[1] == "/":
@@ -275,8 +224,8 @@ def main():
             print(outline)
 
     entrada.close()
+    os.remove(path_salida)
 
 # Cuerpo Principal
 if __name__ == '__main__':
     main()
-    os.remove('/home/sa.mansilla/PycharmProjects/filefix/temp.prn')
