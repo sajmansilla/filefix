@@ -29,7 +29,10 @@ if __name__ == '__main__':
         url = '',
         scripts = [],
         packages = [],
-        py_modules = [],
+        py_modules = [
+            'clases',
+            '__init__'
+        ],
         classifiers = [
             'Development Status :: 3 - Alpha',
             'Programming Language :: Python'

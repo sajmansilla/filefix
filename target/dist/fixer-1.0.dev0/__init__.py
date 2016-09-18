@@ -2,7 +2,6 @@
 # -*- coding: UTF-8 -*-
 
 # Documentacion del script
-__author__ = 'Sebastian Mansilla'
 """ Modulo de ejemplo """
 
 # Modulos que se importan
@@ -71,14 +70,15 @@ def obtener_cuit(linea):
 
 
 def obtener_no_gravado(linea):
-    if linea[len(linea) - 4].find(',') > 0:
-        no_gravado = linea[len(linea) - 4]
-        no_gravado = no_gravado.replace('.', '')
-        no_gravado = no_gravado.replace(',', '')
-    else:
-        no_gravado = 0
+    no_gravado = linea[len(linea) - 4]
+    no_gravado = no_gravado.replace('.', '')
+    no_gravado = no_gravado.replace(',', '')
+    try:
+        no_gravado = float(no_gravado)
+    except:
+        no_gravado = 0.00
 
-    return str(no_gravado)
+    return int(no_gravado)
 
 
 def obtener_gravado(linea):
@@ -106,7 +106,7 @@ def obtener_total(linea):
 
 
 def tratar_linea(linea):
-    # Elimino caracteres a izquierda y derecha de la linea y separo por espacios.
+    # Elimino caracteres a izquierda y derecha de la linea 
     linea = linea.strip()
     linea = linea.split()
     return linea
@@ -139,22 +139,13 @@ def obtener_fecha(linea):
     return fecha
 
 
-def calcular_condicion_fiscal(linea, tipo, cuit):
-    if int(cuit) > 0:
-        if tipo == 'A':
-            condic_fiscal = 'RI'
-        else:
-            condic_fiscal = 'MT'
-    else:
-        condic_fiscal = 'CF'
+def calcular_condicion_fiscal(linea):
+    condic_fiscal = 'RI'
     return condic_fiscal
 
 
-def calcular_tipo_doc_cliente(linea, tipo, cuit):
-    if int(cuit) > 0:
-        tipo_doc_cliente = '80'
-    else:
-        tipo_doc_cliente = '99'
+def calcular_tipo_doc_cliente(linea):
+    tipo_doc_cliente = '99'
     return tipo_doc_cliente
 
 
@@ -164,7 +155,6 @@ def main():
     path_salida = '/home/sebastian/PycharmProjects/filefix/temp.prn'
 
     entrada = preparar_archivo(path_entrada, path_salida)
-    salida = codecs.open('/home/sebastian/PycharmProjects/filefix/salida.prn', 'w', 'utf-8')
     i = 0
     for line in entrada:
         if line[0].isdigit() and line[1] == "/":
@@ -172,20 +162,28 @@ def main():
 
         if len(line) > 1 and (line[1] == "/" or line[2] == "/"):
             linea_split = tratar_linea(line)
-            total_linea = obtener_total(linea_split) # linea.len() - 1
-            iva_linea = obtener_iva(linea_split) # linea.len() - 2
-            gravado = obtener_gravado(linea_split) # linea.len() - 3
-            no_gravado = obtener_no_gravado(linea_split) # linea.len() - 4
+            total_linea = obtener_total(linea_split) #linea.len() - 1
+            iva_linea = obtener_iva(linea_split) #linea.len() - 2
+            gravado = obtener_gravado(linea_split) #linea.len() - 3
+            no_gravado = obtener_no_gravado(linea_split) #linea.len() - 4
 
-            cuit = obtener_cuit(linea_split) # linea.len() - 4 / linea.len() - 5
-            provincia = obtener_provincia(linea_split) # linea.len() - 5 / linea.len() - 6
+            cuit = obtener_cuit(linea_split) #linea.len() - 4 / linea.len() - 5
+            provincia = obtener_provincia(linea_split) #linea.len() - 5 / linea.len() - 6
             razon_social = obtener_razon_social(linea_split)
 
-            nro_comprobante = obtener_nro_comprobante(linea_split) # linea[4]
-            punto_venta = obtener_punto_venta(linea_split) # linea[3]
-            tipo_comprobante = obtener_tipo_comprobante(linea_split) # linea[2]
-            nombre_comprobante = obtener_nombre_comprobante(linea_split) # linea[1]
-            fecha = obtener_fecha(linea_split) # linea[0]
+            nro_comprobante = obtener_nro_comprobante(linea_split) #linea[4]
+            punto_venta = obtener_punto_venta(linea_split) #linea[3]
+            tipo_comprobante = obtener_tipo_comprobante(linea_split) #linea[2]
+            nombre_comprobante = obtener_nombre_comprobante(linea_split) #linea[1]
+            fecha = obtener_fecha(linea_split) #linea[0]
+
+            if 1: #(len(cuit) < 11 or len(cuit) > 13) and len(cuit) > 0 :
+                #print(linea_split)
+                i = i + 1
+                print(str(fecha) + ' | ' + str(nombre_comprobante) + ' | ' + str(tipo_comprobante) + ' | '
+                      + str(punto_venta) + ' | ' + str(nro_comprobante) + ' | ' + str(razon_social) + ' | '
+                      + str(provincia) + ' | ' + str(cuit) + ' | ' + str(no_gravado) + ' | ' + str(gravado) + ' | '
+                      + str(iva_linea) + ' | ' + str(total_linea))
 
             outline = Linea()
             outline.nombre_comprobante = nombre_comprobante
@@ -198,38 +196,34 @@ def main():
             outline.cod_concepto_no_gravado = 'NG'
             outline.conceptos_no_gravados = no_gravado
             outline.cod_operacion_exenta = 'EXV'
-            outline.operaciones_exentas = '0'
+            outline.operaciones_exentas = 0
             outline.codigo_perc_ret_pc = 'P01'
-            outline.percepciones = '0'
+            outline.percepciones = 0
             outline.provincia_ret_perc = provincia
-            outline.tasa_iva = '21'
+            outline.tasa_iva = 21
             outline.iva_liquidado = iva_linea
             outline.debito_fiscal = iva_linea
+            # cuando meto este control, sacar la linea de asignación de abajo
+            # if total_linea == sum(conceptos):
+            #     total = total_linea
+            # else
+            #     print("Excepcion: El total no es igual a la suma de los conceptos.")
+            #     total = total_linea
             outline.total = total_linea
-            outline.condicion_fiscal_cliente = calcular_condicion_fiscal(line, tipo_comprobante, cuit)
+            outline.condicion_fiscal_cliente = calcular_condicion_fiscal(line)
             outline.cuit_cliente = cuit
             outline.nombre_cliente = razon_social
             outline.domicilio_cliente = ''
-            outline.codigo_postal = '0'
+            outline.codigo_postal = 0
             outline.provincia = provincia
-            outline.tipo_doc_cliente = calcular_tipo_doc_cliente(line, tipo_comprobante, cuit)
+            outline.tipo_doc_cliente = calcular_tipo_doc_cliente(line)
             outline.moneda = ''
-            outline.tipo_cambio = '0'
+            outline.tipo_cambio = 0
             outline.cai_cae = ''
 
-            # if int(nro_comprobante) == 59790: #(len(cuit) < 11 or len(cuit) > 13) and len(cuit) > 0 :
-            #print(linea_split)
-            i = i + 1
-            # print(((4 - len(str(i))) * '0' + str(i)) + ': ' + str(fecha) + ' | ' + str(nombre_comprobante)
-            #       + ' | ' + str(tipo_comprobante) + ' | '
-            #       + str(punto_venta) + ' | ' + str(nro_comprobante) + ' | ' + str(razon_social) + ' | '
-            #       + str(provincia) + ' | ' + str(cuit) + ' | ' + str(no_gravado) + ' | ' + str(gravado)
-            #       + ' | ' + str(iva_linea) + ' | ' + str(total_linea))
-            # print(outline)
-            salida.write(str(outline) + '\n')
+            print(outline)
 
     entrada.close()
-    salida.close()
     os.remove(path_salida)
 
 # Cuerpo Principal
