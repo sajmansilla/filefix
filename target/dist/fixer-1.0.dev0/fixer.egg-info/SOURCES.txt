@@ -1,8 +1,0 @@
-__init__.py
-clases.py
-setup.py
-fixer.egg-info/PKG-INFO
-fixer.egg-info/SOURCES.txt
-fixer.egg-info/dependency_links.txt
-fixer.egg-info/top_level.txt
-fixer.egg-info/zip-safe

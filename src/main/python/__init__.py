@@ -1,14 +1,14 @@
 # /usr/bin/env  python     # Linea de inicializacion
 # -*- coding: UTF-8 -*-
 
-# Documentacion del script
-__author__ = 'Sebastian Mansilla'
-""" Modulo de ejemplo """
-
 # Modulos que se importan
 import os
 import codecs
-from clases import Linea
+from src.main.python.clases import Linea
+
+# Documentacion del script
+__author__ = 'Sebastian Mansilla'
+""" Modulo de ejemplo """
 
 # Declaracion de variables Globales
 provincias = {'C': 0, 'B': 1, 'K': 2, 'X': 3, 'W': 4, 'E': 5, 'Y': 6, 'M': 7, 'F': 8, 'A': 9, 'J': 10, 'D': 11, 'S': 12,
@@ -83,24 +83,24 @@ def obtener_no_gravado(linea):
 
 def obtener_gravado(linea):
     gravado = linea[len(linea) - 3]
-    gravado = gravado.replace('.','')
-    gravado = gravado.replace(',','')
+    gravado = gravado.replace('.', '')
+    gravado = gravado.replace(',', '')
     # gravado = float(gravado)/100
     return gravado
 
 
 def obtener_iva(linea):
     iva = linea[len(linea) - 2]
-    iva = iva.replace('.','')
-    iva = iva.replace(',','')
+    iva = iva.replace('.', '')
+    iva = iva.replace(',', '')
     # iva = float(iva)/100
     return iva
 
 
 def obtener_total(linea):
     total = linea[len(linea) - 1]
-    total = total.replace('.','')
-    total = total.replace(',','')
+    total = total.replace('.', '')
+    total = total.replace(',', '')
     # total = float(total)/100
     return total
 
@@ -139,7 +139,7 @@ def obtener_fecha(linea):
     return fecha
 
 
-def calcular_condicion_fiscal(linea, tipo, cuit):
+def calcular_condicion_fiscal(tipo, cuit):
     if int(cuit) > 0:
         if tipo == 'A':
             condic_fiscal = 'RI'
@@ -150,7 +150,7 @@ def calcular_condicion_fiscal(linea, tipo, cuit):
     return condic_fiscal
 
 
-def calcular_tipo_doc_cliente(linea, tipo, cuit):
+def calcular_tipo_doc_cliente(cuit):
     if int(cuit) > 0:
         tipo_doc_cliente = '80'
     else:
@@ -172,20 +172,20 @@ def main():
 
         if len(line) > 1 and (line[1] == "/" or line[2] == "/"):
             linea_split = tratar_linea(line)
-            total_linea = obtener_total(linea_split) # linea.len() - 1
-            iva_linea = obtener_iva(linea_split) # linea.len() - 2
-            gravado = obtener_gravado(linea_split) # linea.len() - 3
-            no_gravado = obtener_no_gravado(linea_split) # linea.len() - 4
+            total_linea = obtener_total(linea_split)  # linea.len() - 1
+            iva_linea = obtener_iva(linea_split)  # linea.len() - 2
+            gravado = obtener_gravado(linea_split)  # linea.len() - 3
+            no_gravado = obtener_no_gravado(linea_split)  # linea.len() - 4
 
-            cuit = obtener_cuit(linea_split) # linea.len() - 4 / linea.len() - 5
-            provincia = obtener_provincia(linea_split) # linea.len() - 5 / linea.len() - 6
+            cuit = obtener_cuit(linea_split)  # linea.len() - 4 / linea.len() - 5
+            provincia = obtener_provincia(linea_split)  # linea.len() - 5 / linea.len() - 6
             razon_social = obtener_razon_social(linea_split)
 
-            nro_comprobante = obtener_nro_comprobante(linea_split) # linea[4]
-            punto_venta = obtener_punto_venta(linea_split) # linea[3]
-            tipo_comprobante = obtener_tipo_comprobante(linea_split) # linea[2]
-            nombre_comprobante = obtener_nombre_comprobante(linea_split) # linea[1]
-            fecha = obtener_fecha(linea_split) # linea[0]
+            nro_comprobante = obtener_nro_comprobante(linea_split)  # linea[4]
+            punto_venta = obtener_punto_venta(linea_split)  # linea[3]
+            tipo_comprobante = obtener_tipo_comprobante(linea_split)  # linea[2]
+            nombre_comprobante = obtener_nombre_comprobante(linea_split)  # linea[1]
+            fecha = obtener_fecha(linea_split)  # linea[0]
 
             outline = Linea()
             outline.nombre_comprobante = nombre_comprobante
@@ -206,20 +206,20 @@ def main():
             outline.iva_liquidado = iva_linea
             outline.debito_fiscal = iva_linea
             outline.total = total_linea
-            outline.condicion_fiscal_cliente = calcular_condicion_fiscal(line, tipo_comprobante, cuit)
+            outline.condicion_fiscal_cliente = calcular_condicion_fiscal(tipo_comprobante, cuit)
             outline.cuit_cliente = cuit
             outline.nombre_cliente = razon_social
             outline.domicilio_cliente = ''
             outline.codigo_postal = '0'
             outline.provincia = provincia
-            outline.tipo_doc_cliente = calcular_tipo_doc_cliente(line, tipo_comprobante, cuit)
+            outline.tipo_doc_cliente = calcular_tipo_doc_cliente(cuit)
             outline.moneda = ''
             outline.tipo_cambio = '0'
             outline.cai_cae = ''
 
             # if int(nro_comprobante) == 59790: #(len(cuit) < 11 or len(cuit) > 13) and len(cuit) > 0 :
-            #print(linea_split)
-            i = i + 1
+            # print(linea_split)
+            i += 1
             # print(((4 - len(str(i))) * '0' + str(i)) + ': ' + str(fecha) + ' | ' + str(nombre_comprobante)
             #       + ' | ' + str(tipo_comprobante) + ' | '
             #       + str(punto_venta) + ' | ' + str(nro_comprobante) + ' | ' + str(razon_social) + ' | '
@@ -235,3 +235,4 @@ def main():
 # Cuerpo Principal
 if __name__ == '__main__':
     main()
+

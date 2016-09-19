@@ -10,35 +10,37 @@ class Linea:
         Esta clase incluye todos los campos que necesita una línea del pnr de Holistor.
     """
 
-    def __init__(self):
-        self.nombre_comprobante = None
-        self.tipo_comprobante = None
-        self.punto_venta = None
-        self.nro_comprobante = None
-        self.fecha = None
-        self.codigo_neto_gravado = None
-        self.neto_gravado = None
-        self.cod_concepto_no_gravado = None
-        self.conceptos_no_gravados = None
-        self.cod_operacion_exenta = None
-        self.operaciones_exentas = None
-        self.codigo_perc_ret_pc = None
-        self.percepciones = None
-        self.provincia_ret_perc = None
-        self.tasa_iva = None
-        self.iva_liquidado = None
-        self.debito_fiscal = None
-        self.total = None
-        self.condicion_fiscal_cliente = None
-        self.cuit_cliente = None
-        self.nombre_cliente = None
-        self.domicilio_cliente = None
-        self.codigo_postal = None
-        self.provincia = None
-        self.tipo_doc_cliente = None
-        self.moneda = None
-        self.ipo_cambio = None
-        self.cai_cae = None
+    # TODO: Arreglar los setters para que cada uno tenga el tamaño definido por la AFIP.
+
+    # def __init__(self):
+    #     self.nombre_comprobante = None
+    #     self.tipo_comprobante = None
+    #     self.punto_venta = None
+    #     self.nro_comprobante = None
+    #     self.fecha = None
+    #     self.codigo_neto_gravado = None
+    #     self.neto_gravado = None
+    #     self.cod_concepto_no_gravado = None
+    #     self.conceptos_no_gravados = None
+    #     self.cod_operacion_exenta = None
+    #     self.operaciones_exentas = None
+    #     self.codigo_perc_ret_pc = None
+    #     self.percepciones = None
+    #     self.provincia_ret_perc = None
+    #     self.tasa_iva = None
+    #     self.iva_liquidado = None
+    #     self.debito_fiscal = None
+    #     self.total = None
+    #     self.condicion_fiscal_cliente = None
+    #     self.cuit_cliente = None
+    #     self.nombre_cliente = None
+    #     self.domicilio_cliente = None
+    #     self.codigo_postal = None
+    #     self.provincia = None
+    #     self.tipo_doc_cliente = None
+    #     self.moneda = None
+    #     self.ipo_cambio = None
+    #     self.cai_cae = None
 
     @property
     def nombre_comprobante(self):
@@ -51,6 +53,7 @@ class Linea:
     @nombre_comprobante.setter
     def nombre_comprobante(self, value):
         # print("Llamada a setter de nombre_comprobante")
+        value = (5 - len(value)) * ' ' + str(value)
         self._nombre_comprobante = value
 
     @nombre_comprobante.deleter
@@ -87,6 +90,7 @@ class Linea:
     @punto_venta.setter
     def punto_venta(self, value):
         # print("Llamada a setter de punto_venta")
+        value = (4 - len(value)) * '0' + str(value)
         self._punto_venta = value
 
     @punto_venta.deleter
@@ -105,6 +109,7 @@ class Linea:
     @nro_comprobante.setter
     def nro_comprobante(self, value):
         # print("Llamada a setter de nro_comprobante")
+        value = (8 - len(value)) * '0' + str(value)
         self._nro_comprobante = value
 
     @nro_comprobante.deleter
@@ -142,6 +147,7 @@ class Linea:
     @codigo_neto_gravado.setter
     def codigo_neto_gravado(self, value):
         # print("Llamada a setter de codigo_neto_gravado")
+        value = (5 - len(value)) * ' ' + str(value)
         self._codigo_neto_gravado = value
 
     @codigo_neto_gravado.deleter
@@ -160,6 +166,13 @@ class Linea:
     @neto_gravado.setter
     def neto_gravado(self, value):
         # print("Llamada a setter de neto_gravado")
+        if int(value) < 0:
+            value = value[1:]
+            value = '-' + (14-len(value)) * '0' + str(value)
+        else:
+            value = (15-len(value)) * '0' + str(value)
+            value = value[len(value) - 15:]
+
         self._neto_gravado = value
 
     @neto_gravado.deleter
@@ -179,6 +192,7 @@ class Linea:
     @cod_concepto_no_gravado.setter
     def cod_concepto_no_gravado(self, value):
         # print("Llamada a setter de cod_concepto_no_gravado")
+        value = (5 - len(value)) * ' ' + str(value)
         self._cod_concepto_no_gravado = value
 
     @cod_concepto_no_gravado.deleter
@@ -198,6 +212,13 @@ class Linea:
     @conceptos_no_gravados.setter
     def conceptos_no_gravados(self, value):
         # print("Llamada a setter de conceptos_no_gravados")
+        if int(value) < 0:
+            value = value[1:]
+            value = '-' + (14-len(value)) * '0' + str(value)
+        else:
+            value = (15-len(value)) * '0' + str(value)
+            value = value[len(value) - 15:]
+
         self._conceptos_no_gravados = value
 
     @conceptos_no_gravados.deleter
@@ -236,6 +257,12 @@ class Linea:
     @operaciones_exentas.setter
     def operaciones_exentas(self, value):
         # print("Llamada a setter de operaciones_exentas")
+        if int(value) < 0:
+            value = value[1:]
+            value = '-' + (14-len(value)) * '0' + str(value)
+        else:
+            value = (15-len(value)) * '0' + str(value)
+            value = value[len(value) - 15:]
         self._operaciones_exentas = value
 
     @operaciones_exentas.deleter
@@ -274,6 +301,12 @@ class Linea:
     @percepciones.setter
     def percepciones(self, value):
         # print("Llamada a setter de percepciones")
+        if int(value) < 0:
+            value = value[1:]
+            value = '-' + (14-len(value)) * '0' + str(value)
+        else:
+            value = (15-len(value)) * '0' + str(value)
+            value = value[len(value) - 15:]
         self._percepciones = value
 
     @percepciones.deleter
@@ -333,6 +366,12 @@ class Linea:
     @iva_liquidado.setter
     def iva_liquidado(self, value):
         # print("Llamada a setter de iva_liquidado")
+        if int(value) < 0:
+            value = value[1:]
+            value = '-' + (14-len(value)) * '0' + str(value)
+        else:
+            value = (15-len(value)) * '0' + str(value)
+            value = value[len(value) - 15:]
         self._iva_liquidado = value
 
     @iva_liquidado.deleter
@@ -352,6 +391,12 @@ class Linea:
     @debito_fiscal.setter
     def debito_fiscal(self, value):
         # print("Llamada a setter de debito_fiscal")
+        if int(value) < 0:
+            value = value[1:]
+            value = '-' + (14-len(value)) * '0' + str(value)
+        else:
+            value = (15-len(value)) * '0' + str(value)
+            value = value[len(value) - 15:]
         self._debito_fiscal = value
 
     @debito_fiscal.deleter
@@ -371,6 +416,12 @@ class Linea:
     @total.setter
     def total(self, value):
         # print("Llamada a setter de total")
+        if int(value) < 0:
+            value = value[1:]
+            value = '-' + (14-len(value)) * '0' + str(value)
+        else:
+            value = (15-len(value)) * '0' + str(value)
+            value = value[len(value) - 15:]
         self._total = value
 
     @total.deleter
@@ -570,15 +621,27 @@ class Linea:
 
 
     def __str__(self):
-        cadena = self.nombre_comprobante + ', ' + self.tipo_comprobante + ', ' + self.punto_venta + ', ' \
-                 + self.nro_comprobante + ', ' + self.fecha + ', ' + self.codigo_neto_gravado + ', ' \
-                 + str(self.neto_gravado) + ', ' + self.cod_concepto_no_gravado + ', ' \
-                 + str(self.conceptos_no_gravados) + ', ' + self.cod_operacion_exenta + ', ' \
-                 + str(self.operaciones_exentas) + ', ' + self.codigo_perc_ret_pc + ', ' \
-                 + str(self.percepciones) + ', ' + self.provincia_ret_perc + ', ' + str(self.tasa_iva) + ', ' \
-                 + str(self.iva_liquidado) + ', ' + str(self.debito_fiscal) + ', ' + str(self.total) + ', ' \
-                 + self.condicion_fiscal_cliente + ', ' + str(self.cuit_cliente) + ', ' + self.nombre_cliente + ', ' \
-                 + self.domicilio_cliente + ', ' + str(self.codigo_postal) + ', ' + self.provincia + ', ' \
-                 + self.tipo_doc_cliente + ', ' + str(self.moneda) + ', ' + str(self.tipo_cambio) + ', ' \
+        # formato impresion
+        # cadena = self.nombre_comprobante + ', ' + self.tipo_comprobante + ', ' + self.punto_venta + ', ' \
+        #          + self.nro_comprobante + ', ' + self.fecha + ', ' + self.codigo_neto_gravado + ', ' \
+        #          + str(self.neto_gravado) + ', ' + self.cod_concepto_no_gravado + ', ' \
+        #          + str(self.conceptos_no_gravados) + ', ' + self.cod_operacion_exenta + ', ' \
+        #          + str(self.operaciones_exentas) + ', ' + self.codigo_perc_ret_pc + ', ' \
+        #          + str(self.percepciones) + ', ' + self.provincia_ret_perc + ', ' + str(self.tasa_iva) + ', ' \
+        #          + str(self.iva_liquidado) + ', ' + str(self.debito_fiscal) + ', ' + str(self.total) + ', ' \
+        #          + self.condicion_fiscal_cliente + ', ' + str(self.cuit_cliente) + ', ' + self.nombre_cliente + ', ' \
+        #          + self.domicilio_cliente + ', ' + str(self.codigo_postal) + ', ' + self.provincia + ', ' \
+        #          + self.tipo_doc_cliente + ', ' + str(self.moneda) + ', ' + str(self.tipo_cambio) + ', ' \
+        #          + str(self.cai_cae)
+        cadena = self.nombre_comprobante + self.tipo_comprobante + self.punto_venta \
+                 + self.nro_comprobante + self.fecha + self.codigo_neto_gravado \
+                 + str(self.neto_gravado) + self.cod_concepto_no_gravado \
+                 + str(self.conceptos_no_gravados) + self.cod_operacion_exenta \
+                 + str(self.operaciones_exentas) + self.codigo_perc_ret_pc \
+                 + str(self.percepciones) + self.provincia_ret_perc + str(self.tasa_iva) \
+                 + str(self.iva_liquidado) + str(self.debito_fiscal) + str(self.total) \
+                 + self.condicion_fiscal_cliente + str(self.cuit_cliente) + self.nombre_cliente \
+                 + self.domicilio_cliente + str(self.codigo_postal) + self.provincia \
+                 + self.tipo_doc_cliente + str(self.moneda) + str(self.tipo_cambio) \
                  + str(self.cai_cae)
         return cadena
