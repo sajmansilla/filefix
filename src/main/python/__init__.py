@@ -85,7 +85,8 @@ def obtener_gravado(linea):
     gravado = linea[len(linea) - 3]
     gravado = gravado.replace('.', '')
     gravado = gravado.replace(',', '')
-    # gravado = float(gravado)/100
+    gravado = float(gravado)/100
+    gravado = str(gravado)
     return gravado
 
 
@@ -93,7 +94,8 @@ def obtener_iva(linea):
     iva = linea[len(linea) - 2]
     iva = iva.replace('.', '')
     iva = iva.replace(',', '')
-    # iva = float(iva)/100
+    iva = float(iva)/100
+    iva = str(iva)
     return iva
 
 

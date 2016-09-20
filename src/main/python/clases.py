@@ -238,6 +238,7 @@ class Linea:
     @cod_operacion_exenta.setter
     def cod_operacion_exenta(self, value):
         # print("Llamada a setter de cod_operacion_exenta")
+        value = (5 - len(value)) * ' ' + str(value)
         self._cod_operacion_exenta = value
 
     @cod_operacion_exenta.deleter
@@ -282,6 +283,7 @@ class Linea:
     @codigo_perc_ret_pc.setter
     def codigo_perc_ret_pc(self, value):
         # print("Llamada a setter de codigo_perc_ret_pc")
+        value = (5 - len(value)) * ' ' + str(value)
         self._codigo_perc_ret_pc = value
 
     @codigo_perc_ret_pc.deleter
@@ -328,6 +330,7 @@ class Linea:
     @provincia_ret_perc.setter
     def provincia_ret_perc(self, value):
         # print("Llamada a setter de provincia_ret_perc")
+        value = (5 - len(value)) * ' ' + str(value)
         self._provincia_ret_perc = value
 
     @provincia_ret_perc.deleter
