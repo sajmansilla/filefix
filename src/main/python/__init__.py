@@ -77,7 +77,8 @@ def obtener_no_gravado(linea):
         no_gravado = no_gravado.replace(',', '')
     else:
         no_gravado = 0
-
+    no_gravado = float(no_gravado)/100
+    no_gravado = str(no_gravado)
     return str(no_gravado)
 
 
@@ -103,7 +104,8 @@ def obtener_total(linea):
     total = linea[len(linea) - 1]
     total = total.replace('.', '')
     total = total.replace(',', '')
-    # total = float(total)/100
+    total = float(total)/100
+    total = str(total)
     return total
 
 
@@ -227,8 +229,8 @@ def main():
             #       + str(punto_venta) + ' | ' + str(nro_comprobante) + ' | ' + str(razon_social) + ' | '
             #       + str(provincia) + ' | ' + str(cuit) + ' | ' + str(no_gravado) + ' | ' + str(gravado)
             #       + ' | ' + str(iva_linea) + ' | ' + str(total_linea))
-            # print(outline)
-            salida.write(str(outline) + '\n')
+            print(outline)
+            # salida.write(str(outline) + '\n')
 
     entrada.close()
     salida.close()

@@ -14,3 +14,17 @@ operaciones exentas - 15
 codigo percepciones y retenciones provinciales - 5
 percepciones - 15
 provincia retenciones y percepciones - 15
+tasa iva - 5
+iva liquidado - 15
+debito fiscal - 15
+total - 15
+condicion fiscal cliente - 5
+cuit cliente - 11
+nombre cliente - 30
+domicilio cliente -  50
+codigo_postal - 10
+provincia - 4
+tipo doc cliente - 3
+moneda - 3
+tipo_cambio - 15
+cai_cae - 14

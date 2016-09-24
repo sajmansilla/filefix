@@ -53,7 +53,7 @@ class Linea:
     @nombre_comprobante.setter
     def nombre_comprobante(self, value):
         # print("Llamada a setter de nombre_comprobante")
-        value = (5 - len(value)) * ' ' + str(value)
+        value = str(value) + (5 - len(value)) * ' '
         self._nombre_comprobante = value
 
     @nombre_comprobante.deleter
@@ -166,13 +166,7 @@ class Linea:
     @neto_gravado.setter
     def neto_gravado(self, value):
         # print("Llamada a setter de neto_gravado")
-        if int(value) < 0:
-            value = value[1:]
-            value = '-' + (14-len(value)) * '0' + str(value)
-        else:
-            value = (15-len(value)) * '0' + str(value)
-            value = value[len(value) - 15:]
-
+        value = (15 - len(value)) * ' ' + str(value)
         self._neto_gravado = value
 
     @neto_gravado.deleter
@@ -212,13 +206,7 @@ class Linea:
     @conceptos_no_gravados.setter
     def conceptos_no_gravados(self, value):
         # print("Llamada a setter de conceptos_no_gravados")
-        if int(value) < 0:
-            value = value[1:]
-            value = '-' + (14-len(value)) * '0' + str(value)
-        else:
-            value = (15-len(value)) * '0' + str(value)
-            value = value[len(value) - 15:]
-
+        value = (15 - len(value)) * ' ' + str(value)
         self._conceptos_no_gravados = value
 
     @conceptos_no_gravados.deleter
@@ -258,12 +246,7 @@ class Linea:
     @operaciones_exentas.setter
     def operaciones_exentas(self, value):
         # print("Llamada a setter de operaciones_exentas")
-        if int(value) < 0:
-            value = value[1:]
-            value = '-' + (14-len(value)) * '0' + str(value)
-        else:
-            value = (15-len(value)) * '0' + str(value)
-            value = value[len(value) - 15:]
+        value = (15 - len(value)) * ' ' + str(value)
         self._operaciones_exentas = value
 
     @operaciones_exentas.deleter
@@ -303,12 +286,7 @@ class Linea:
     @percepciones.setter
     def percepciones(self, value):
         # print("Llamada a setter de percepciones")
-        if int(value) < 0:
-            value = value[1:]
-            value = '-' + (14-len(value)) * '0' + str(value)
-        else:
-            value = (15-len(value)) * '0' + str(value)
-            value = value[len(value) - 15:]
+        value = (15 - len(value)) * ' ' + str(value)
         self._percepciones = value
 
     @percepciones.deleter
@@ -350,6 +328,7 @@ class Linea:
     @tasa_iva.setter
     def tasa_iva(self, value):
         # print("Llamada a setter de tasa_iva")
+        value = (5 - len(value)) * ' ' + str(value)
         self._tasa_iva = value
 
     @tasa_iva.deleter
@@ -369,12 +348,7 @@ class Linea:
     @iva_liquidado.setter
     def iva_liquidado(self, value):
         # print("Llamada a setter de iva_liquidado")
-        if int(value) < 0:
-            value = value[1:]
-            value = '-' + (14-len(value)) * '0' + str(value)
-        else:
-            value = (15-len(value)) * '0' + str(value)
-            value = value[len(value) - 15:]
+        value = (15 - len(value)) * ' ' + str(value)
         self._iva_liquidado = value
 
     @iva_liquidado.deleter
@@ -394,12 +368,7 @@ class Linea:
     @debito_fiscal.setter
     def debito_fiscal(self, value):
         # print("Llamada a setter de debito_fiscal")
-        if int(value) < 0:
-            value = value[1:]
-            value = '-' + (14-len(value)) * '0' + str(value)
-        else:
-            value = (15-len(value)) * '0' + str(value)
-            value = value[len(value) - 15:]
+        value = (15 - len(value)) * ' ' + str(value)
         self._debito_fiscal = value
 
     @debito_fiscal.deleter
@@ -419,12 +388,7 @@ class Linea:
     @total.setter
     def total(self, value):
         # print("Llamada a setter de total")
-        if int(value) < 0:
-            value = value[1:]
-            value = '-' + (14-len(value)) * '0' + str(value)
-        else:
-            value = (15-len(value)) * '0' + str(value)
-            value = value[len(value) - 15:]
+        value = (15 - len(str(value))) * ' ' + str(value)
         self._total = value
 
     @total.deleter
@@ -444,6 +408,7 @@ class Linea:
     @condicion_fiscal_cliente.setter
     def condicion_fiscal_cliente(self, value):
         # print("Llamada a setter de condicion_fiscal_cliente")
+        value = (5 - len(value)) * ' ' + str(value)
         self._condicion_fiscal_cliente = value
 
     @condicion_fiscal_cliente.deleter
@@ -463,6 +428,10 @@ class Linea:
     @cuit_cliente.setter
     def cuit_cliente(self, value):
         # print("Llamada a setter de cuit_cliente")
+        primer_num = value[0:2]
+        segund_num = value[2:len(value)-1]
+        tercer_num = value[len(value)-1]
+        value = str(primer_num) + str(segund_num) + str(tercer_num)
         self._cuit_cliente = value
 
     @cuit_cliente.deleter
@@ -482,6 +451,7 @@ class Linea:
     @nombre_cliente.setter
     def nombre_cliente(self, value):
         # print("Llamada a setter de nombre_cliente")
+        value = str(value) + (30 - len(value)) * ' '
         self._nombre_cliente = value
 
     @nombre_cliente.deleter
@@ -501,6 +471,7 @@ class Linea:
     @domicilio_cliente.setter
     def domicilio_cliente(self, value):
         # print("Llamada a setter de domicilio_cliente")
+        value = str(value) + (50 - len(value)) * ' '
         self._domicilio_cliente = value
 
     @domicilio_cliente.deleter
@@ -520,6 +491,7 @@ class Linea:
     @codigo_postal.setter
     def codigo_postal(self, value):
         # print("Llamada a setter de codigo_postal")
+        value = (10 - len(value)) * ' ' + str(value)
         self._codigo_postal = value
 
     @codigo_postal.deleter
@@ -539,6 +511,7 @@ class Linea:
     @provincia.setter
     def provincia(self, value):
         # print("Llamada a setter de provincia")
+        value = (4 - len(value)) * ' ' + str(value)
         self._provincia = value
 
     @provincia.deleter
@@ -558,6 +531,7 @@ class Linea:
     @tipo_doc_cliente.setter
     def tipo_doc_cliente(self, value):
         # print("Llamada a setter de tipo_doc_cliente")
+        value = (3 - len(value)) * ' ' + str(value)
         self._tipo_doc_cliente = value
 
     @tipo_doc_cliente.deleter
@@ -577,6 +551,7 @@ class Linea:
     @moneda.setter
     def moneda(self, value):
         # print("Llamada a setter de moneda")
+        value = (3 - len(value)) * ' ' + str(value)
         self._moneda = value
 
     @moneda.deleter
@@ -596,6 +571,7 @@ class Linea:
     @Tipo_cambio.setter
     def Tipo_cambio(self, value):
         # print("Llamada a setter de Tipo_cambio")
+        value = (15 - len(value)) * ' ' + str(value)
         self._Tipo_cambio = value
 
     @Tipo_cambio.deleter
@@ -615,6 +591,7 @@ class Linea:
     @cai_cae.setter
     def cai_cae(self, value):
         # print("Llamada a setter de cai_cae")
+        value = (14 - len(value)) * ' ' + str(value)
         self._cai_cae = value
 
     @cai_cae.deleter
