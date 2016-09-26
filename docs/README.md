@@ -1,6 +1,6 @@
 # filefix
 Campos para Holistor
-Nombre comprobante - 5
+Nombre comprobante - 20
 Tipo comprobante - 1
 Punto venta - 4
 Nro comprobante - 8

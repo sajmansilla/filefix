@@ -1,4 +1,9 @@
-Name                          Stmts   Miss Branch BrPart  Cover   Missing
--------------------------------------------------------------------------
-src/main/python/__init__.py     150    150     20      0     0%   5-231
-src/main/python/clases.py   NotPython: Couldn't parse '/home/sebastian/PycharmProjects/filefix/src/main/python/clases.py' as Python source: 'unindent does not match any outer indentation level' at line 12
+Name              Stmts   Miss Branch BrPart  Cover   Missing
+-------------------------------------------------------------
+__init__.py           8      8      2      0     0%   5-27
+control.py          110    110     22      0     0%   5-253
+model.py              0      0      0      0   100%   
+model/clases.py     203    203      0      0     0%   7-599
+view.py              43     43      6      0     0%   4-78
+-------------------------------------------------------------
+TOTAL               364    364     30      0     0%   

@@ -1,46 +1,18 @@
-# Declaracion de Clases
+# /usr/bin/env  python     # Linea de inicializacion
+# -*- coding: UTF-8 -*-
 
-class Archivo:
-    variable = 0
+# Declaracion de Clase Linea
 
 
 class Linea:
     """
         Clase Linea
-        Esta clase incluye todos los campos que necesita una línea del pnr de Holistor.
+        Esta clase incluye todos los campos que necesita una línea
+        del pnr de Holistor.
     """
 
-    # TODO: Arreglar los setters para que cada uno tenga el tamaño definido por la AFIP.
-
-    # def __init__(self):
-    #     self.nombre_comprobante = None
-    #     self.tipo_comprobante = None
-    #     self.punto_venta = None
-    #     self.nro_comprobante = None
-    #     self.fecha = None
-    #     self.codigo_neto_gravado = None
-    #     self.neto_gravado = None
-    #     self.cod_concepto_no_gravado = None
-    #     self.conceptos_no_gravados = None
-    #     self.cod_operacion_exenta = None
-    #     self.operaciones_exentas = None
-    #     self.codigo_perc_ret_pc = None
-    #     self.percepciones = None
-    #     self.provincia_ret_perc = None
-    #     self.tasa_iva = None
-    #     self.iva_liquidado = None
-    #     self.debito_fiscal = None
-    #     self.total = None
-    #     self.condicion_fiscal_cliente = None
-    #     self.cuit_cliente = None
-    #     self.nombre_cliente = None
-    #     self.domicilio_cliente = None
-    #     self.codigo_postal = None
-    #     self.provincia = None
-    #     self.tipo_doc_cliente = None
-    #     self.moneda = None
-    #     self.ipo_cambio = None
-    #     self.cai_cae = None
+    def __init__(self):
+        return None
 
     @property
     def nombre_comprobante(self):
@@ -53,7 +25,7 @@ class Linea:
     @nombre_comprobante.setter
     def nombre_comprobante(self, value):
         # print("Llamada a setter de nombre_comprobante")
-        value = str(value) + (5 - len(value)) * ' '
+        value = str(value) + (20 - len(value)) * ' '
         self._nombre_comprobante = value
 
     @nombre_comprobante.deleter

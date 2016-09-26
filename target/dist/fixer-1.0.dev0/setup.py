@@ -28,11 +28,12 @@ if __name__ == '__main__':
         license = '',
         url = '',
         scripts = [],
-        packages = [],
-        py_modules = [
-            'clases',
-            '__init__'
+        packages = [
+            'view',
+            'model',
+            'control'
         ],
+        py_modules = ['__init__'],
         classifiers = [
             'Development Status :: 3 - Alpha',
             'Programming Language :: Python'
