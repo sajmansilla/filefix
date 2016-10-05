@@ -585,15 +585,16 @@ class Linea:
         #          + self.domicilio_cliente + ', ' + str(self.codigo_postal) + ', ' + self.provincia + ', ' \
         #          + self.tipo_doc_cliente + ', ' + str(self.moneda) + ', ' + str(self.tipo_cambio) + ', ' \
         #          + str(self.cai_cae)
-        cadena = self.nombre_comprobante + self.tipo_comprobante + self.punto_venta \
-                 + self.nro_comprobante + self.fecha + self.codigo_neto_gravado \
-                 + str(self.neto_gravado) + self.cod_concepto_no_gravado \
-                 + str(self.conceptos_no_gravados) + self.cod_operacion_exenta \
-                 + str(self.operaciones_exentas) + self.codigo_perc_ret_pc \
-                 + str(self.percepciones) + self.provincia_ret_perc + str(self.tasa_iva) \
+        cadena = \
+                    str(self.nombre_comprobante) + str(self.tipo_comprobante) + str(self.punto_venta) \
+                 + str(self.nro_comprobante) + str(self.fecha) + str(self.codigo_neto_gravado) \
+                 + str(self.neto_gravado) + str(self.cod_concepto_no_gravado) \
+                 + str(self.conceptos_no_gravados) + str(self.cod_operacion_exenta) \
+                 + str(self.operaciones_exentas) + str(self.codigo_perc_ret_pc) \
+                 + str(self.percepciones) + str(self.provincia_ret_perc) + str(self.tasa_iva) \
                  + str(self.iva_liquidado) + str(self.debito_fiscal) + str(self.total) \
-                 + self.condicion_fiscal_cliente + str(self.cuit_cliente) + self.nombre_cliente \
-                 + self.domicilio_cliente + str(self.codigo_postal) + self.provincia \
-                 + self.tipo_doc_cliente + str(self.moneda) + str(self.tipo_cambio) \
+                 + str(self.condicion_fiscal_cliente) + str(self.cuit_cliente) + str(self.nombre_cliente) \
+                 + str(self.domicilio_cliente) + str(self.codigo_postal) + str(self.provincia) \
+                 + str(self.tipo_doc_cliente) + str(self.moneda) + str(self.tipo_cambio) \
                  + str(self.cai_cae)
         return cadena

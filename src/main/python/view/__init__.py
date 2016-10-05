@@ -25,10 +25,18 @@ class Vista():
             self.root, text="Convertir", padx=30,
             command=lambda: ctrl.main())
 
+        self.BtEntrada = tk.Button(
+            self.root, text="...",
+            command=lambda: ctrl.set_entrada())
+
+        self.BtSalida = tk.Button(
+            self.root, text="...",
+            command=lambda: ctrl.set_salida())
+
     def dir_open(self):
         directorio = eg.diropenbox(msg="Abrir directorio:",
                                    title="Control: diropenbox",
-                                   default='/home/antonio')
+                                   default='')
 
         eg.msgbox(directorio, "diropenbox", ok_button="Continuar")
         return directorio
@@ -39,6 +47,8 @@ class Vista():
                                  title="Control: fileopenbox",
                                  default='',
                                  filetypes=extension)
+        print(archivo)
+        return archivo
 
         eg.msgbox(archivo, "fileopenbox", ok_button="Continuar")
         return archivo
@@ -70,7 +80,9 @@ class Vista():
                 # #pack labels##
                 row.pack(side="top", padx = 5, pady = 5, fill = "x") # , fill="x", padx=5, pady=5)
                 nameLabel.pack(side="left", expand=True, fill="x")
+                self.BtEntrada.pack(side="left", expand=True, fill="x")
                 valueLabel.pack(side="left", expand=True, fill="x")
+                self.BtSalida.pack(side="left", expand=True, fill="x")
 
     def run(self):
         self.grid()

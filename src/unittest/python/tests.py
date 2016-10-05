@@ -13,3 +13,4 @@ obj.say('Hi')
 # back in the tests, verify interactions
 verify(obj).say('Hi')
 verifyNoMoreInteractions(obj)
+

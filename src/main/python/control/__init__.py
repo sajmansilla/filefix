@@ -12,6 +12,9 @@ __author__ = 'Sebastian Mansilla'
 """ Modulo de ejemplo """
 
 # Declaracion de variables Globales
+path_salida = ''
+path_entrada = ''
+path_temp = ''
 provincias = {
     'C': 0, 'B': 1, 'K': 2, 'X': 3, 'W': 4,
     'E': 5, 'Y': 6, 'M': 7, 'F': 8, 'A': 9,
@@ -20,7 +23,28 @@ provincias = {
     'L': 21, 'R': 22, 'Z': 23, 'V': 24}
 
 
+# Declaracion de Clases
+class  Control():
+    """docstring for  Control"""
+    def __init__(self):
+        super( Control, self).__init__()
+        print("Esta es la clase control")
+
+
+
 # Declaracion de Funciones
+
+
+def set_entrada():
+    vw = vista.Vista()
+    path_entrada = vw.file_open()
+    return path_entrada
+
+
+def set_salida():
+    vw = vista.Vista()
+    path_salida = vw.file_save()
+    return path_salida
 
 
 def obtener_razon_social(linea):
@@ -52,7 +76,7 @@ def obtener_provincia(linea):
 
 def preparar_archivo(path_entrada, path_salida):
     infile = codecs.open(path_entrada, 'r', 'latin-1')
-    outfile = codecs.open(path_salida, 'w', 'utf-8')
+    outfile = codecs.open(path_salida, 'w', 'latin-1')
 
     outfile.write(infile.read())
 
@@ -176,78 +200,79 @@ def calcular_tipo_doc_cliente(cuit):
 
 def main():
     """Main"""
-    print("Arranco")
+
+    path_entrada = '/home/sebastian/PycharmProjects/filefix/DANI0716.tsv'#vista.file_open()
+    path_temp = './salida.prn'
+    path_salida = '/home/sebastian/PycharmProjects/filefix/nuevo.prn'#vista.file_save()
+
+    entrada = preparar_archivo(path_entrada, path_temp)
+    salida = codecs.open(path_salida, 'w', 'latin-1')
+
+    for line in entrada:
+        if line[0].isdigit() and line[1] == "/":
+            line = '0' + line
+
+        if len(line) > 1 and (line[1] == "/" or line[2] == "/"):
+            linea_split = tratar_linea(line)
+            total_linea = obtener_total(linea_split)  # linea.len() - 1
+            iva_linea = obtener_iva(linea_split)  # linea.len() - 2
+            gravado = obtener_gravado(linea_split)  # linea.len() - 3
+            no_gravado = obtener_no_gravado(linea_split)  # linea.len() - 4
+
+            cuit = obtener_cuit(linea_split)  # linea.len() - 4/- 5
+            provincia = obtener_provincia(linea_split)  # linea.len()-5/-6
+            razon_social = obtener_razon_social(linea_split)
+
+            nro_comprobante = obtener_nro_comprobante(linea_split)  # linea[4]
+            punto_venta = obtener_punto_venta(linea_split)  # linea[3]
+            tipo_comprobante = obtener_tipo_comp(linea_split)  # linea[2]
+            nombre_comprobante = obtener_nombre_comp(linea_split)  # linea[1]
+            fecha = obtener_fecha(linea_split)  # linea[0]
+
+            outline = Linea()
+            outline.nombre_comprobante = nombre_comprobante
+            outline.tipo_comprobante = tipo_comprobante
+            outline.punto_venta = punto_venta
+            outline.nro_comprobante = nro_comprobante
+            outline.fecha = fecha
+            outline.codigo_neto_gravado = 'VTA'
+            outline.neto_gravado = gravado
+            outline.cod_concepto_no_gravado = 'NG'
+            outline.conceptos_no_gravados = no_gravado
+            outline.cod_operacion_exenta = 'EXV'
+            outline.operaciones_exentas = '0'
+            outline.codigo_perc_ret_pc = 'P01'
+            outline.percepciones = '0'
+            outline.provincia_ret_perc = provincia
+            outline.tasa_iva = '21'
+            outline.iva_liquidado = iva_linea
+            outline.debito_fiscal = iva_linea
+            outline.total = total_linea
+            outline.condicion_fiscal_cliente = calcular_cond_fiscal(
+                tipo_comprobante, cuit)
+            outline.cuit_cliente = cuit
+            outline.nombre_cliente = razon_social
+            outline.domicilio_cliente = ''
+            outline.codigo_postal = '0'
+            outline.provincia = provincia
+            outline.tipo_doc_cliente = calcular_tipo_doc_cliente(cuit)
+            outline.moneda = ''
+            outline.tipo_cambio = '0'
+            outline.cai_cae = ''
+
+            salida.write(str(outline) + '\n')
+
+    entrada.close()
+    salida.close()
+    os.remove(path_temp)
+
+    print("Arranco con\nentrada = " + path_entrada + "\nsalida = "
+        + path_salida + "\ntemp = " + path_temp)
     outline1 = Linea()
-    # path_entrada = vista.file_open()
-    # path_temp = './salida.prn'
-    # path_salida = vista.file_save()
-
-    # entrada = preparar_archivo(path_entrada, path_temp)
-    # salida = codecs.open(path_salida, 'w', 'utf-8')
-
-    # for line in entrada:
-    #     if line[0].isdigit() and line[1] == "/":
-    #         line = '0' + line
-
-    #     if len(line) > 1 and (line[1] == "/" or line[2] == "/"):
-    #         linea_split = tratar_linea(line)
-    #         total_linea = obtener_total(linea_split)  # linea.len() - 1
-    #         iva_linea = obtener_iva(linea_split)  # linea.len() - 2
-    #         gravado = obtener_gravado(linea_split)  # linea.len() - 3
-    #         no_gravado = obtener_no_gravado(linea_split)  # linea.len() - 4
-
-    #         cuit = obtener_cuit(linea_split)  # linea.len() - 4/- 5
-    #         provincia = obtener_provincia(linea_split)  # linea.len()-5/-6
-    #         razon_social = obtener_razon_social(linea_split)
-
-    #         nro_comprobante = obtener_nro_comprobante(linea_split)  # linea[4]
-    #         punto_venta = obtener_punto_venta(linea_split)  # linea[3]
-    #         tipo_comprobante = obtener_tipo_comp(linea_split)  # linea[2]
-    #         nombre_comprobante = obtener_nombre_comp(linea_split)  # linea[1]
-    #         fecha = obtener_fecha(linea_split)  # linea[0]
-
-    #         outline = modelo.Linea()
-    #         outline.nombre_comprobante = nombre_comprobante
-    #         outline.tipo_comprobante = tipo_comprobante
-    #         outline.punto_venta = punto_venta
-    #         outline.nro_comprobante = nro_comprobante
-    #         outline.fecha = fecha
-    #         outline.codigo_neto_gravado = 'VTA'
-    #         outline.neto_gravado = gravado
-    #         outline.cod_concepto_no_gravado = 'NG'
-    #         outline.conceptos_no_gravados = no_gravado
-    #         outline.cod_operacion_exenta = 'EXV'
-    #         outline.operaciones_exentas = '0'
-    #         outline.codigo_perc_ret_pc = 'P01'
-    #         outline.percepciones = '0'
-    #         outline.provincia_ret_perc = provincia
-    #         outline.tasa_iva = '21'
-    #         outline.iva_liquidado = iva_linea
-    #         outline.debito_fiscal = iva_linea
-    #         outline.total = total_linea
-    #         outline.condicion_fiscal_cliente = calcular_cond_fiscal(
-    #             tipo_comprobante, cuit)
-    #         outline.cuit_cliente = cuit
-    #         outline.nombre_cliente = razon_social
-    #         outline.domicilio_cliente = ''
-    #         outline.codigo_postal = '0'
-    #         outline.provincia = provincia
-    #         outline.tipo_doc_cliente = calcular_tipo_doc_cliente(cuit)
-    #         outline.moneda = ''
-    #         outline.tipo_cambio = '0'
-    #         outline.cai_cae = ''
-
-    #         salida.write(str(outline) + '\n')
-
-    # entrada.close()
-    # salida.close()
-    # os.remove(path_salida)
 
 # Cuerpo Principal
 
 
 if __name__ == '__main__':
-    # TODO: los controles van dentro de la vista, pero la acción la escribo en
-    # el controlador.py
     # main()
     print('llamo a control')
