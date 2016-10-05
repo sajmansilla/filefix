@@ -9,7 +9,11 @@ fields = [("Entrada", "Null"), ("Salida", "Null")]
 
 
 class Vista():
+
     def __init__(self):
+
+        controlador = ctrl.Control()
+
         self.root = tk.Tk()
         self.root.title("FileFix")
         # #Labels##
@@ -23,15 +27,15 @@ class Vista():
 
         self.BtConvertir = tk.Button(
             self.root, text="Convertir", padx=30,
-            command=lambda: ctrl.main())
+            command=lambda: controlador.main())
 
         self.BtEntrada = tk.Button(
-            self.root, text="...",
-            command=lambda: ctrl.set_entrada())
+            self.root, text="in",
+            command=lambda: controlador.set_entrada(self))
 
         self.BtSalida = tk.Button(
-            self.root, text="...",
-            command=lambda: ctrl.set_salida())
+            self.root, text="out",
+            command=lambda: controlador.set_salida(self))
 
     def dir_open(self):
         directorio = eg.diropenbox(msg="Abrir directorio:",
