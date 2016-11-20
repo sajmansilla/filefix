@@ -122,6 +122,10 @@ class Control():
 
     def obtener_gravado(self,linea):
         gravado = linea[len(linea) - 3]
+        if gravado == 'H':
+            print("Aqui")
+
+
         gravado = gravado.replace('.', '')
         gravado = gravado.replace(',', '')
         gravado = float(gravado) / 100
