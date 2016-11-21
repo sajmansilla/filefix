@@ -1,102 +1,37 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import easygui as eg
-import tkinter as tk
-import control as ctrl
+from tkinter import *
 
-fields = [("Entrada", "Null"), ("Salida", "Null")]
+class View(Toplevel):
+    def __init__(self, root):
+        Toplevel.__init__(self, root)
+        self.protocol("WM_DELETE_WINDOW", root.destroy)  # Protocolo a usar al pulsar en la X de cierre
+        self.title('Filefix')  # Nombramos la ventana
 
+        row1 = Frame(self)     #creamos un Frame dentro de la ventana creada
+        row2 = Frame(self)     #creamos otro Frame dentro de la ventana creada
+        botonera = Frame(self)  # creo la row de los botones
 
-class Vista():
+        self.lEntrada = Label(row1, text="Entrada")#Ponemos una línea de texto
+        self.lIn = Label(row1, text="Ningun archivo seleccionado")#Ponemos una línea de texto
+        self.bEntrada = Button(row1, text="...")
 
-    def __init__(self):
+        self.lSalida = Label(row2, text="Salida")#Ponemos una línea de texto
+        self.lOut = Label(row2, text="Ningun archivo seleccionado")#Ponemos una línea de texto
+        self.bSalida = Button(row2, text="...")
 
-        controlador = ctrl.Control()
+        self.bConvert = Button(botonera, text="Convertir")
 
-        self.root = tk.Tk()
-        self.root.title("FileFix")
-        # #Labels##
-        self.rootLabel = tk.Label(
-            self.root,
-            text="Seleccione los archivos de entrada y salida",
-            padx=0)
+        row1.pack(side="top", fill="x", padx=5, pady=5)            #Lo situamos en la ventana
+        self.lEntrada.pack(side="left", fill="x", padx=5, pady=5)
+        self.lIn.pack(side="left", fill="x", padx=5, pady=5)
+        self.bEntrada.pack(side="right", fill="x", padx=5, pady=5)
 
-        # self.BtEntrada = tk.Button(
-        #     self.row, text="in",
-        #     command=lambda: controlador.set_entrada(self))
-        #
-        # self.BtSalida = tk.Button(
-        #     self.row, text="out",
-        #     command=lambda: controlador.set_salida(self))
+        row2.pack(side="top", fill="x", padx=5, pady=5)            #Lo situamos en la ventana
+        self.lSalida.pack(side="left", fill="x", padx=5, pady=5)
+        self.lOut.pack(side="left", fill="x", padx=5, pady=5)
+        self.bSalida.pack(side="right", fill="x", padx=5, pady=5)
 
-    def dir_open(self):
-        directorio = eg.diropenbox(msg="Abrir directorio:",
-                                   title="Control: diropenbox",
-                                   default='')
-
-        return directorio
-
-    def file_open(self):
-        extension = ["*.py", "*.pyc"]
-        archivo = eg.fileopenbox(msg="Abrir archivo",
-                                 title="Control: fileopenbox",
-                                 default='',
-                                 filetypes=extension)
-        print(archivo)
-        return archivo
-
-    def file_save(self):
-        extension = ["*.py", "*.pyc"]
-        archivo = eg.filesavebox(msg="Guardar archivo",
-                                 title="Control: filesavebox",
-                                 default='',
-                                 filetypes=extension)
-        return archivo
-
-    def grid(self):
-        self.rootLabel.pack()
-        self.fckPackFields()
-        self.BtConvertir.pack(side="right")
-        self.BtExit.pack(side="left")
-        # ##self.BtNewWindow.pack(side="right")
-
-    def fckPackFields(self):
-        controlador = ctrl.Control()
-
-        if fields:
-            i = 1
-            for field in fields:
-                # #create labels##
-                row = tk.Frame(self.root)
-                nameLabel = tk.Label(row, text=field[0]) # , anchor="center")
-                valueLabel = tk.Label(row, text=field[1])
-                self.BtEntrada = tk.Button(
-                    row, text="in",
-                    command=lambda: controlador.set_entrada(self))
-
-                self.BtSalida = tk.Button(
-                    row, text="out",
-                    command=lambda: controlador.set_salida(self))
-                # #pack labels##
-                row.pack(side="top", fill="x", padx=5, pady=5) # , fill="x", padx=5, pady=5)
-                nameLabel.pack(side="left", fill="x", padx=5, pady=5)
-                valueLabel.pack(side="left", fill="x", padx=5, pady=5)
-                if i==1:
-                    self.BtEntrada.pack(side="left", fill="x", padx=5, pady=5)
-                    i = i + 1
-                else:
-                    self.BtSalida.pack(side="left", fill="x", padx=5, pady=5)
-
-        # #Buttons##
-        self.BtExit = tk.Button(
-            self.root, text="Salir", command=self.root.quit)
-
-        self.BtConvertir = tk.Button(
-            self.root, text="Convertir", padx=30,
-            command=lambda: controlador.main())
-
-    def run(self):
-        self.grid()
-        self.root.mainloop()
-        self.root.destroy()
+        botonera.pack(side="top")
+        self.bConvert.pack(side="bottom")

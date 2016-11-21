@@ -4,8 +4,9 @@
 # Modulos que se importan
 import os
 import codecs
+import easygui as eg
 from model.clases import Linea
-import view as vista
+from view import *
 
 # Documentacion del script
 __author__ = 'Sebastian Mansilla'
@@ -24,7 +25,7 @@ provincias = {
 
 
 # Declaracion de Clases
-class Control():
+class Control:
     """docstring for  Control"""
 
 
@@ -34,24 +35,34 @@ class Control():
     #vista.file_save()
     path_salida = ''
 
-    def __init__(self):
-        super(Control, self).__init__()
+    def __init__(self, root):
         print("Esta es la clase control")
+        self.model = Linea()
+        self.view = View(root)
+        self.view.bEntrada.config(command = self.set_entrada)
+        self.view.bSalida.config(command = self.set_salida)
+        self.view.bConvert.config(command = self.main)
 
 
     # Declaracion de Funciones
 
+    def set_entrada(self):
+        extension = ['*.tsv', '*.txt']
+        self.path_entrada = eg.fileopenbox(msg="Abrir archivo",
+                                 title="Control: fileopenbox",
+                                 default='',
+                                 filetypes=extension)
+        print(self.path_entrada)
+        self.view.lIn.config(text = self.path_entrada)
 
-    def set_entrada(self, vw):
-        # vw = vista.Vista()
-        self.path_entrada = vw.file_open()
-        # return path_entrada
-
-
-    def set_salida(self, vw):
-        # vw = vista.Vista()
-        self.path_salida = vw.file_save()
-        # return path_salida
+    def set_salida(self):
+        extension = ["*.pnr"]
+        self.path_salida = eg.filesavebox(msg="Guardar archivo",
+                                 title="Control: filesavebox",
+                                 default='',
+                                 filetypes=extension)
+        print(self.path_salida)
+        self.view.lOut.config(text = self.path_salida)
 
 
     def obtener_razon_social(self,linea):
@@ -123,8 +134,7 @@ class Control():
     def obtener_gravado(self,linea):
         gravado = linea[len(linea) - 3]
         if gravado == 'H':
-            print("Aqui")
-
+            print("aqui")
 
         gravado = gravado.replace('.', '')
         gravado = gravado.replace(',', '')
@@ -272,9 +282,4 @@ class Control():
             + self.path_salida + "\ntemp = " + self.path_temp)
         outline1 = Linea()
 
-# Cuerpo Principal
-
-
-if __name__ == '__main__':
-    # main()
-    print('llamo a control')
+        eg.msgbox("El archivo se ha terminado de generar.\nPuede encontrarlo en: " + self.path_salida)
