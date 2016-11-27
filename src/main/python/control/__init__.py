@@ -37,7 +37,7 @@ class Control:
 
     def __init__(self, root):
         print("Esta es la clase control")
-        self.model = Linea()
+        #self.model = Linea(0)
         self.view = View(root)
         self.view.bEntrada.config(command = self.set_entrada)
         self.view.bSalida.config(command = self.set_salida)
@@ -91,9 +91,9 @@ class Control:
             provincia = '00' + str(provincias[provincia])
             provincia = provincia[len(provincia) - 2:]
             return provincia
-        except Exception as e:
-            print("Tipo de excepcion: " + str(type(e)))
-            print("Excepcion: " + str(e.__str__()))
+        except KeyError:
+            print("Error en comprobante nro: " + str(self.nro_comprobante))
+            print("Intenta ingresar como Razón Social: " + str(razon_social))
 
 
     def preparar_archivo(self,path_entrada, path_salida):
@@ -238,8 +238,8 @@ class Control:
                 no_gravado = self.obtener_no_gravado(linea_split)  # linea.len() - 4
 
                 cuit = self.obtener_cuit(linea_split)  # linea.len() - 4/- 5
-                provincia = self.obtener_provincia(linea_split)  # linea.len()-5/-6
-                razon_social = self.obtener_razon_social(linea_split)
+                #provincia = self.obtener_provincia(linea_split)  # linea.len()-5/-6
+                #razon_social = self.obtener_razon_social(linea_split)
 
                 nro_comprobante = self.obtener_nro_comprobante(linea_split)  # linea[4]
                 punto_venta = self.obtener_punto_venta(linea_split)  # linea[3]
@@ -247,7 +247,7 @@ class Control:
                 nombre_comprobante = self.obtener_nombre_comp(linea_split)  # linea[1]
                 fecha = self.obtener_fecha(linea_split)  # linea[0]
 
-                outline = Linea()
+                outline = Linea(nro_comprobante)
                 outline.nombre_comprobante = nombre_comprobante
                 outline.tipo_comprobante = tipo_comprobante
                 outline.punto_venta = punto_venta
@@ -261,7 +261,7 @@ class Control:
                 outline.operaciones_exentas = '0'
                 outline.codigo_perc_ret_pc = 'P01'
                 outline.percepciones = '0'
-                outline.provincia_ret_perc = provincia
+                outline.provincia_ret_perc = linea_split
                 outline.tasa_iva = '21'
                 outline.iva_liquidado = iva_linea
                 outline.debito_fiscal = iva_linea
@@ -272,7 +272,7 @@ class Control:
                 outline.nombre_cliente = linea_split
                 outline.domicilio_cliente = ''
                 outline.codigo_postal = '0'
-                outline.provincia = provincia
+                outline.provincia = linea_split
                 outline.tipo_doc_cliente = self.calcular_tipo_doc_cliente(cuit)
                 outline.moneda = ''
                 outline.tipo_cambio = '0'
@@ -286,6 +286,6 @@ class Control:
 
         print("Arranco con\nentrada = " + self.path_entrada + "\nsalida = "
             + self.path_salida + "\ntemp = " + self.path_temp)
-        outline1 = Linea()
+        #outline1 = Linea()
 
         eg.msgbox("El archivo se ha terminado de generar.\nPuede encontrarlo en: " + self.path_salida)

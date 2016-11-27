@@ -11,8 +11,15 @@ class Linea:
         del pnr de Holistor.
     """
 
-    def __init__(self):
-        return None
+    provincias = {
+        'C': 0, 'B': 1, 'K': 2, 'X': 3, 'W': 4,
+        'E': 5, 'Y': 6, 'M': 7, 'F': 8, 'A': 9,
+        'J': 10, 'D': 11, 'S': 12, 'G': 13, 'T': 14,
+        'H': 16, 'U': 17, 'P': 18, 'N': 19, 'Q': 20,
+        'L': 21, 'R': 22, 'Z': 23, 'V': 24}
+
+    def __init__(self, nro_comprobante):
+        self.nro_comprobante = nro_comprobante
 
     @property
     def nombre_comprobante(self):
@@ -437,9 +444,9 @@ class Linea:
 
         try:
             self._nombre_cliente = razon_social
-        except Exception as e:
-            print("Tipo de excepcion: " + type(e))
-            print("Excepcion: " + e)
+        except KeyError:
+            print("Error en comprobante nro: " + str(self.nro_comprobante))
+            print("Intenta ingresar como Razón Social: " + str(razon_social))
 
 
     @nombre_cliente.deleter
@@ -451,7 +458,8 @@ class Linea:
     def domicilio_cliente(self):
         """
         Tasa I.V.A.
-        Puede utilizarse cualquier separador (coma, punto, etc.) No interesa si tiene o no el símbolo %.
+        Puede utilizarse cualquier separador (coma, punto, etc.) No interesa si
+        tiene o no el símbolo %.
         """
         # print("Llamada a getter de domicilio_cliente")
         return self._domicilio_cliente
@@ -497,10 +505,24 @@ class Linea:
         return self._provincia
 
     @provincia.setter
-    def provincia(self, value):
+    def provincia(self, linea):
         # print("Llamada a setter de provincia")
-        value = (4 - len(value)) * ' ' + str(value)
-        self._provincia = value
+        if len(linea[len(linea) - 5]) == 1:
+            provincia = linea[len(linea) - 5]
+        elif len(linea[len(linea) - 6]) == 1:
+            provincia = linea[len(linea) - 6]
+        else:
+            provincia = ''
+
+        try:
+            provincia = '00' + str(self.provincias[provincia])
+            provincia = provincia[len(provincia) - 2:]
+            value = (4 - len(provincia)) * ' ' + str(provincia)
+            self._provincia = value
+        except KeyError:
+            print("Error en comprobante nro: " + str(self.nro_comprobante))
+            print("Intenta ingresar como Provincia: " + str(provincia))
+            # TODO: Tengo que escapar de la ejecución aquí
 
     @provincia.deleter
     def provincia(self):
