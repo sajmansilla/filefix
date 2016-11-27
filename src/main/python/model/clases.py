@@ -421,10 +421,26 @@ class Linea:
         return self._nombre_cliente
 
     @nombre_cliente.setter
-    def nombre_cliente(self, value):
         # print("Llamada a setter de nombre_cliente")
-        value = str(value) + (30 - len(value)) * ' '
-        self._nombre_cliente = value
+    def nombre_cliente(self, linea):
+        if len(linea[len(linea) - 5]) == 1:
+            posicion = 5
+        elif len(linea[len(linea) - 6]) == 1:
+            posicion = 6
+        else:
+            posicion = 0
+
+        razon_social = linea[5:len(linea) - posicion]
+        razon_social = ' '.join(razon_social) + '                         '
+        razon_social = razon_social[0:29]
+        razon_social = str(razon_social) + (30 - len(razon_social)) * ' '
+
+        try:
+            self._nombre_cliente = razon_social
+        except Exception as e:
+            print("Tipo de excepcion: " + type(e))
+            print("Excepcion: " + e)
+
 
     @nombre_cliente.deleter
     def nombre_cliente(self):
@@ -573,18 +589,6 @@ class Linea:
 
 
     def __str__(self):
-        # formato impresion
-        # cadena = self.nombre_comprobante + ', ' + self.tipo_comprobante + ', ' + self.punto_venta + ', ' \
-        #          + self.nro_comprobante + ', ' + self.fecha + ', ' + self.codigo_neto_gravado + ', ' \
-        #          + str(self.neto_gravado) + ', ' + self.cod_concepto_no_gravado + ', ' \
-        #          + str(self.conceptos_no_gravados) + ', ' + self.cod_operacion_exenta + ', ' \
-        #          + str(self.operaciones_exentas) + ', ' + self.codigo_perc_ret_pc + ', ' \
-        #          + str(self.percepciones) + ', ' + self.provincia_ret_perc + ', ' + str(self.tasa_iva) + ', ' \
-        #          + str(self.iva_liquidado) + ', ' + str(self.debito_fiscal) + ', ' + str(self.total) + ', ' \
-        #          + self.condicion_fiscal_cliente + ', ' + str(self.cuit_cliente) + ', ' + self.nombre_cliente + ', ' \
-        #          + self.domicilio_cliente + ', ' + str(self.codigo_postal) + ', ' + self.provincia + ', ' \
-        #          + self.tipo_doc_cliente + ', ' + str(self.moneda) + ', ' + str(self.tipo_cambio) + ', ' \
-        #          + str(self.cai_cae)
         cadena = \
                     str(self.nombre_comprobante) + str(self.tipo_comprobante) + str(self.punto_venta) \
                  + str(self.nro_comprobante) + str(self.fecha) + str(self.codigo_neto_gravado) \

@@ -87,9 +87,13 @@ class Control:
         else:
             provincia = ''
 
-        provincia = '00' + str(provincias[provincia])
-        provincia = provincia[len(provincia) - 2:]
-        return provincia
+        try:
+            provincia = '00' + str(provincias[provincia])
+            provincia = provincia[len(provincia) - 2:]
+            return provincia
+        except Exception as e:
+            print("Tipo de excepcion: " + str(type(e)))
+            print("Excepcion: " + str(e.__str__()))
 
 
     def preparar_archivo(self,path_entrada, path_salida):
@@ -133,14 +137,16 @@ class Control:
 
     def obtener_gravado(self,linea):
         gravado = linea[len(linea) - 3]
-        if gravado == 'H':
-            print("aqui")
 
         gravado = gravado.replace('.', '')
         gravado = gravado.replace(',', '')
-        gravado = float(gravado) / 100
-        gravado = str(gravado)
-        return gravado
+        try:
+            gravado = float(gravado) / 100
+            gravado = str(gravado)
+            return gravado
+        except Exception as e:
+            print("Tipo excepcion: " + type(e))
+            print("Excepcion: " + e)
 
 
     def obtener_iva(self,linea):
@@ -263,7 +269,7 @@ class Control:
                 outline.condicion_fiscal_cliente = self.calcular_cond_fiscal(
                     tipo_comprobante, cuit)
                 outline.cuit_cliente = cuit
-                outline.nombre_cliente = razon_social
+                outline.nombre_cliente = linea_split
                 outline.domicilio_cliente = ''
                 outline.codigo_postal = '0'
                 outline.provincia = provincia

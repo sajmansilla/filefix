@@ -14,4 +14,4 @@ setup(name='filefix',
       version = '1.0',
       description = 'file',
       options = dict(build_exe = buildOptions),
-      executables = executables)
+      executables = executables, requires=['easygui'])
