@@ -172,28 +172,6 @@ class Control:
         linea = linea.split()
         return linea
 
-    def obtener_nro_comprobante(self,linea):
-        nro_comprobante = linea[4]
-        return nro_comprobante
-
-    def obtener_punto_venta(self,linea):
-        pto_vta = linea[3]
-        pto_vta = '0000' + str(pto_vta)
-        pto_vta = pto_vta[len(pto_vta) - 4:]
-        return pto_vta
-
-    def obtener_tipo_comp(self,linea):
-        letra_comprobante = linea[2]
-        return letra_comprobante
-
-    def obtener_nombre_comp(self,linea):
-        tipo_comprobante = linea[1]
-        return tipo_comprobante
-
-    def obtener_fecha(self,linea):
-        fecha = linea[0]
-        return fecha
-
     def calcular_cond_fiscal(self,tipo, cuit):
         if int(cuit) > 0:
             if tipo == 'A':
@@ -238,45 +216,8 @@ class Control:
                 no_gravado = self.obtener_no_gravado(linea_split)  # linea.len() - 4
 
                 cuit = self.obtener_cuit(linea_split)  # linea.len() - 4/- 5
-                #provincia = self.obtener_provincia(linea_split)  # linea.len()-5/-6
-                #razon_social = self.obtener_razon_social(linea_split)
 
-                nro_comprobante = self.obtener_nro_comprobante(linea_split)  # linea[4]
-                punto_venta = self.obtener_punto_venta(linea_split)  # linea[3]
-                tipo_comprobante = self.obtener_tipo_comp(linea_split)  # linea[2]
-                nombre_comprobante = self.obtener_nombre_comp(linea_split)  # linea[1]
-                fecha = self.obtener_fecha(linea_split)  # linea[0]
-
-                outline = Linea(nro_comprobante)
-                outline.nombre_comprobante = nombre_comprobante
-                outline.tipo_comprobante = tipo_comprobante
-                outline.punto_venta = punto_venta
-                outline.nro_comprobante = nro_comprobante
-                outline.fecha = fecha
-                outline.codigo_neto_gravado = 'VTA'
-                outline.neto_gravado = gravado
-                outline.cod_concepto_no_gravado = 'NG'
-                outline.conceptos_no_gravados = no_gravado
-                outline.cod_operacion_exenta = 'EXV'
-                outline.operaciones_exentas = '0'
-                outline.codigo_perc_ret_pc = 'P01'
-                outline.percepciones = '0'
-                outline.provincia_ret_perc = linea_split
-                outline.tasa_iva = '21'
-                outline.iva_liquidado = iva_linea
-                outline.debito_fiscal = iva_linea
-                outline.total = total_linea
-                outline.condicion_fiscal_cliente = self.calcular_cond_fiscal(
-                    tipo_comprobante, cuit)
-                outline.cuit_cliente = cuit
-                outline.nombre_cliente = linea_split
-                outline.domicilio_cliente = ''
-                outline.codigo_postal = '0'
-                outline.provincia = linea_split
-                outline.tipo_doc_cliente = self.calcular_tipo_doc_cliente(cuit)
-                outline.moneda = ''
-                outline.tipo_cambio = '0'
-                outline.cai_cae = ''
+                outline = Linea(linea_split)
 
                 salida.write(str(outline) + '\n')
 

@@ -18,8 +18,99 @@ class Linea:
         'H': 16, 'U': 17, 'P': 18, 'N': 19, 'Q': 20,
         'L': 21, 'R': 22, 'Z': 23, 'V': 24}
 
-    def __init__(self, nro_comprobante):
-        self.nro_comprobante = nro_comprobante
+    def calcular_cond_fiscal(self,tipo, cuit):
+        if int(cuit) > 0:
+            if tipo == 'A':
+                condic_fiscal = 'RI'
+            else:
+                condic_fiscal = 'MT'
+        else:
+            condic_fiscal = 'CF'
+        return condic_fiscal
+
+    def calcular_cuit_cli(self, valores):
+        if self.no_gravado: # El total es no gravado
+            salida = valores[len(valores) - 1]
+        elif self.todo_gravado: # No hay no gravado
+            salida = valores[len(valores) - 2]
+        else:
+            salida = valores[len(valores) - 3]
+        if len(salida) > 10:
+            salida = salida.replace('-')
+            salida = salida.replace('.')
+        else:
+            salida = ''
+        cuit = salida
+        return cuit
+
+    def calcular_valores(self, valores):
+        total = valores[0]
+        valores_corregidos = [total]
+        control = 0
+        for valor in valores[1:]:
+            try:
+                valor = float(valor)
+            except ValueError:
+                if len(valor) > 1:
+                    print("Es un CUIT")
+                else:
+                    print("Es una provincia")
+                break
+            control += valor
+            if total >= control:
+                valores_corregidos.append(valor)
+            else:
+                print("El total es menor a la suma.")
+                break
+        if len(valores_corregidos) == 2: # No Gravado
+            valores_corregidos.insert(1, 0)
+            valores_corregidos.insert(2, 0)
+            self.no_gravado = True
+        elif len(valores_corregidos) == 3: # Gravado 100%
+            valores_corregidos.append(0)
+            self.todo_gravado = True
+        return valores_corregidos
+
+    def __init__(self, linea):
+        self.no_gravado = False
+        self.todo_gravado = False
+        self.nro_comprobante = linea[4]
+        self.nombre_comprobante = linea[1]
+        self.tipo_comprobante = linea[2]
+        self.punto_venta = linea[3]
+        self.fecha = linea[0]
+        # Esto haría la distribucion de montos
+        valores = linea[len(linea) - 4:len(linea)]
+        self.salida = self.calcular_valores(valores)
+        self.total = self.salida[0]
+        iva_linea = self.salida[1]
+        self.codigo_neto_gravado = 'VTA'
+        self.neto_gravado = self.salida[2]
+        self.cod_concepto_no_gravado = 'NG'
+        self.conceptos_no_gravados = self.salida[3]
+        self.cod_operacion_exenta = 'EXV'
+        self.operaciones_exentas = '0'
+        self.codigo_perc_ret_pc = 'P01'
+        self.percepciones = '0'
+        self.tasa_iva = '21'
+        self.iva_liquidado = iva_linea
+        self.debito_fiscal = iva_linea
+        cuit_cli = self.calcular_cuit_cli(linea[len(linea) - 5:len(linea)- 3])
+        self.nombre_cliente = linea[5:] # TODO: Definir el nombre de cliente
+        self.cuit_cliente = cuit_cli
+        # TODO: Cuando esté el nombre de cliente, definir de acá para abajo
+        cond_fiscal = self.calcular_cond_fiscal(self.tipo_comprobante,
+                                                self.cuit_cliente,
+                                                self.nombre_cliente)
+        self.condicion_fiscal_cliente = cond_fiscal
+        self.domicilio_cliente = ''
+        self.codigo_postal = '0'
+        self.provincia = linea_split
+        self.tipo_doc_cliente = self.calcular_tipo_doc_cliente(cuit)
+        self.moneda = ''
+        self.tipo_cambio = '0'
+        self.cai_cae = ''
+
 
     @property
     def nombre_comprobante(self):
@@ -69,8 +160,9 @@ class Linea:
     @punto_venta.setter
     def punto_venta(self, value):
         # print("Llamada a setter de punto_venta")
-        value = (4 - len(value)) * '0' + str(value)
-        self._punto_venta = value
+        pto_vta = value
+        pto_vta = (4 - len(pto_vta)) * '0' + str(pto_vta)
+        self._punto_venta = pto_vta
 
     @punto_venta.deleter
     def punto_venta(self):
@@ -286,9 +378,28 @@ class Linea:
 
     @provincia_ret_perc.setter
     def provincia_ret_perc(self, value):
-        # print("Llamada a setter de provincia_ret_perc")
-        value = (5 - len(value)) * ' ' + str(value)
-        self._provincia_ret_perc = value
+        # print("Llamada a setter de provincia_ret_perc"
+        if len(value[len(value) - 3]) > 9 or len(value[len(value) - 5]) > 9:
+            falta_cuit = False
+        else:
+            falta_cuit = True
+        if self.no_gravado and falta_cuit:
+            provincia = value[len(value) - 3]
+        elif self.no_gravado and not falta_cuit:
+            provincia = value[len(value) - 4]
+        elif falta_cuit and not self.no_gravado:
+            provincia = value[len(value) - 5]
+        else:
+            provincia = value[len(value) - 6]
+
+        try:
+            provincia = '00' + str(self.provincias[provincia])
+            provincia = provincia[len(provincia) - 2:]
+        except KeyError:
+            print("Error en comprobante nro: " + str(self.nro_comprobante))
+            print("Intenta ingresar como Razón Social: " + str(self.nombre_cliente))
+            provincia = (5 - len(provincia)) * ' ' + str(provincia)
+        self._provincia_ret_perc = provincia
 
     @provincia_ret_perc.deleter
     def provincia_ret_perc(self):
@@ -367,8 +478,11 @@ class Linea:
     @total.setter
     def total(self, value):
         # print("Llamada a setter de total")
-        value = (15 - len(str(value))) * ' ' + str(value)
-        self._total = value
+        total = value
+        total = total.replace('.', '')
+        total = total.replace(',', '')
+        total = (15 - len(str(total))) * ' ' + str(total)
+        self._total = total
 
     @total.deleter
     def total(self):
