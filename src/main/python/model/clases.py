@@ -18,6 +18,14 @@ class Linea:
         'H': 16, 'U': 17, 'P': 18, 'N': 19, 'Q': 20,
         'L': 21, 'R': 22, 'Z': 23, 'V': 24}
 
+    @staticmethod
+    def calcular_tipo_doc_cliente(cuit):
+        if int(cuit) > 0:
+            tipo_doc_cliente = '80'
+        else:
+            tipo_doc_cliente = '99'
+        return tipo_doc_cliente
+
     def calcular_cond_fiscal(self,tipo, cuit):
         if int(cuit) > 0:
             if tipo == 'A':
@@ -44,27 +52,32 @@ class Linea:
         return cuit
 
     def calcular_valores(self, valores):
-        total = valores[0]
+        # TODO: Esto está andando mal
+        total = (valores[0].replace('.','')).replace(',','.')
+        total = float(total)
         valores_corregidos = [total]
         control = 0
         for valor in valores[1:]:
             try:
-                valor = float(valor)
+                monto = valor
+                monto = monto.replace('.','')
+                monto = monto.replace(',','.')
+                monto = float(monto)
             except ValueError:
-                if len(valor) > 1:
+                if len(monto) > 1:
                     print("Es un CUIT")
                 else:
                     print("Es una provincia")
                 break
-            control += valor
+            control += monto
             if total >= control:
-                valores_corregidos.append(valor)
+                valores_corregidos.append(monto)
             else:
                 print("El total es menor a la suma.")
                 break
         if len(valores_corregidos) == 2: # No Gravado
-            valores_corregidos.insert(1, 0)
-            valores_corregidos.insert(2, 0)
+            valores_corregidos.append(0,0)
+            valores_corregidos.append(1, 0)
             self.no_gravado = True
         elif len(valores_corregidos) == 3: # Gravado 100%
             valores_corregidos.append(0)
@@ -81,6 +94,7 @@ class Linea:
         self.fecha = linea[0]
         # Esto haría la distribucion de montos
         valores = linea[len(linea) - 4:len(linea)]
+        valores.reverse()
         self.salida = self.calcular_valores(valores)
         self.total = self.salida[0]
         iva_linea = self.salida[1]
@@ -96,17 +110,16 @@ class Linea:
         self.iva_liquidado = iva_linea
         self.debito_fiscal = iva_linea
         cuit_cli = self.calcular_cuit_cli(linea[len(linea) - 5:len(linea)- 3])
-        self.nombre_cliente = linea[5:] # TODO: Definir el nombre de cliente
+        self.nombre_cliente = linea[5:]
         self.cuit_cliente = cuit_cli
-        # TODO: Cuando esté el nombre de cliente, definir de acá para abajo
         cond_fiscal = self.calcular_cond_fiscal(self.tipo_comprobante,
                                                 self.cuit_cliente,
                                                 self.nombre_cliente)
         self.condicion_fiscal_cliente = cond_fiscal
         self.domicilio_cliente = ''
         self.codigo_postal = '0'
-        self.provincia = linea_split
-        self.tipo_doc_cliente = self.calcular_tipo_doc_cliente(cuit)
+        self.provincia = linea
+        self.tipo_doc_cliente = self.calcular_tipo_doc_cliente(cuit_cli)
         self.moneda = ''
         self.tipo_cambio = '0'
         self.cai_cae = ''
@@ -551,7 +564,7 @@ class Linea:
         else:
             posicion = 0
 
-        razon_social = linea[5:len(linea) - posicion]
+        razon_social = linea[:len(linea) - posicion]
         razon_social = ' '.join(razon_social) + '                         '
         razon_social = razon_social[0:29]
         razon_social = str(razon_social) + (30 - len(razon_social)) * ' '

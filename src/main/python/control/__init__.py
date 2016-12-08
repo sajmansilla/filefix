@@ -145,8 +145,8 @@ class Control:
             gravado = str(gravado)
             return gravado
         except Exception as e:
-            print("Tipo excepcion: " + type(e))
-            print("Excepcion: " + e)
+            print("Tipo excepcion: " + str(type(e)))
+            print("Excepcion: " + str(e))
 
 
     def obtener_iva(self,linea):
